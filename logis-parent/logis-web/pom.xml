@@ -14,9 +14,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.wmang.logis</groupId>
-			<artifactId>logis-core</artifactId>
-		</dependency>
+				<groupId>com.wmang.logis</groupId>
+				<artifactId>logis-core</artifactId>
+			</dependency>
 	</dependencies>
 
 
@@ -59,7 +59,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<url>http://localhost:8180/manager/text</url>
+					<url>http://localhost:8080/manager/text</url>
 					<server>tomcat</server>
 					<username>deployer</username>
 					<password>admin</password>
