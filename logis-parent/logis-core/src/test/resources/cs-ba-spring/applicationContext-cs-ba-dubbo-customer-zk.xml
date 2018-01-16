@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	">
+	<!-- 作为消费者所调用的接口配置 -->
+	<!-- 使用DUBBO zookeeper注册中心配置的接口配置文件，在发版上线时候使用 -->
+	<!-- <dubbo:reference id="userFacade" interface="com.midea.ccss.common.api.facade.UserFacade" 
+		/> -->
+	<dubbo:consumer check="false" />
+	<!--系统参数框架中转接口 -->
+	<!-- <dubbo:reference id="sysParamTransferFacade" -->
+	<!-- interface="com.midea.ccss.common.api.facade.SysParamTransferFacade"/> -->
+
+
+	<!--权限操作远程服务 -->
+	<dubbo:reference id="authOptionsFacade"
+		interface="com.neusoft.cs.permission.api.facade.AuthOptionsFacade"
+		timeout="5000" />
+
+	<!-- 权限注入 -->
+	<dubbo:reference id="permissionInterceptorFacade"
+		interface="com.neusoft.cs.pub.api.facade.PermissionInterceptorFacade"
+		timeout="5000" />
+	<!-- 自动生成编码注入 -->
+	<dubbo:reference id="cssCodeRuleFacade"
+		interface="com.neusoft.cs.framework.rpc.api.facade.CssCodeRuleFacade"
+		timeout="5000" />
+</beans>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	">
+
+	<!-- 作为提供者所提供的接口配置 -->
+
+	<!-- 自动生成表格,框架冗余,请勿删除 start -->
+	<dubbo:service ref="supBaseGridFacade"
+		interface="com.neusoft.cs.pub.api.facade.BaseplamGridFacade" group="ba"
+		timeout="10000" />
+	<bean id="supBaseGridFacade"
+		class="com.neusoft.cs.pub.core.facade.impl.BaseplamGridFacadeImpl" />
+	<!-- 自动生成表格,框架冗余,请勿删除 end -->
+
+	<!-- 快速查询，框架冗余，请勿删除 start -->
+	<dubbo:service ref="supQuickSearchDataFacade"
+		interface="com.neusoft.cs.pub.api.facade.QuickSearchDataFacade" group="ba"
+		timeout="6000" />
+	<bean id="supQuickSearchDataFacade"
+		class="com.neusoft.cs.pub.core.facade.impl.QuickSearchDataFacadeImpl" />
+	<!-- 快速查询，框架冗余，请勿删除 end -->
+
+	<!-- 自动生成树，框架冗余，请勿删除 start -->
+	<dubbo:service ref="supBasetreeFacade"
+		interface="com.neusoft.cs.pub.api.facade.BasetreeConfigureFacade"
+		group="ba" timeout="6000" />
+	<bean id="supBasetreeFacade"
+		class="com.neusoft.cs.pub.core.facade.impl.BasetreeConfigureFacadeImpl" />
+	<!-- 自动生成树，框架冗余，请勿删除 end -->
+
+	<!-- 导入导出，框架冗余，请勿删除 start -->
+	<dubbo:service ref="supImpDataFacade"
+		interface="com.neusoft.cs.pub.api.facade.PubImportDataFacade" group="ba"
+		timeout="600000" />
+	<bean id="supImpDataFacade"
+		class="com.neusoft.cs.pub.core.facade.impl.PubImportDataFacadeImpl" />
+	<!-- 导入导出，框架冗余，请勿删除 end -->
+
+
+
+	<!-- 系统参数配置模块 -->
+	<!-- <dubbo:service ref="supParamListFacade" interface="com.midea.ccss.sup.api.facade.SupParamListFacade" 
+		/> -->
+	<!-- <bean id="supParamListFacade" class="com.midea.ccss.sup.core.facade.impl.SupParamListFacadeImpl" 
+		/> -->
+
+	<!-- 基础数据对外接口 -->
+	<dubbo:service ref="baInterfaceFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaInterfaceFacade" />
+	<bean id="baInterfaceFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaInterfaceFacadeImpl" />
+
+
+	<dubbo:service ref="supParamListFacade"
+		interface="com.neusoft.cs.ba.api.facade.SupParamListFacade" timeout="600000" />
+	<bean id="supParamListFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.SupParamListFacadeImpl" />
+
+	<dubbo:service ref="baCustomerFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaCustomerFacade" />
+	<bean id="baCustomerFacade" class="com.neusoft.cs.ba.core.facade.impl.BaCustomerFacadeImpl" />
+	<dubbo:service ref="baCustomerBankAddressFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaCustomerBankAddressFacade" />
+	<bean id="baCustomerBankAddressFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaCustomerBankAddressFacadeImpl" />
+
+	<!-- 服务商客户关系表 -->
+	<dubbo:service ref="baUnitCustomerFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaUnitCustomerFacade" />
+	<bean id="baUnitCustomerFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaUnitCustomerFacadeImpl" />
+	<!-- 服务商授权信息 -->
+	<dubbo:service ref="baUnitAccreditFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaUnitAccreditFacade" />
+	<bean id="baUnitAccreditFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaUnitAccreditFacadeImpl" />
+	<!-- 服务商区域授权 -->
+	<dubbo:service ref="baUnitAreaAccreditFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaUnitAreaAccreditFacade" />
+	<bean id="baUnitAreaAccreditFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaUnitAreaAccreditFacadeImpl" />
+	<!-- 服务商档案 -->
+	<dubbo:service ref="baUnitArchivesFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaUnitArchivesFacade" />
+	<bean id="baUnitArchivesFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaUnitArchivesFacadeImpl" />
+	<!-- 产品品类表 -->
+	<dubbo:service ref="baProdTypeFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaProdTypeFacade" />
+	<bean id="baProdTypeFacade" class="com.neusoft.cs.ba.core.facade.impl.BaProdTypeFacadeImpl" />
+	<!-- 产品主数据 -->
+	<dubbo:service ref="baProductInfoFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaProductInfoFacade" />
+	<bean id="baProductInfoFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaProductInfoFacadeImpl" />
+	<!-- 工程师主数据 -->
+	<dubbo:service ref="baEngineerInfoFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaEngineerInfoFacade" />
+	<bean id="baEngineerInfoFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaEngineerInfoFacadeImpl" />
+	<!-- 工程师授权 -->
+	<dubbo:service ref="baEngineerAccreditFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaEngineerAccreditFacade" />
+	<bean id="baEngineerAccreditFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaEngineerAccreditFacadeImpl" />
+	<!-- 故障现象 -->
+	<dubbo:service ref="baMachineFaultFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaMachineFaultFacade" />
+	<bean id="baMachineFaultFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaMachineFaultFacadeImpl" />
+	<!-- 故障原因 -->
+	<dubbo:service ref="baFaultReasonFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaFaultReasonFacade" />
+	<bean id="baFaultReasonFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaFaultReasonFacadeImpl" />
+	<!-- 故障现象与故障原因的关系 -->
+	<dubbo:service ref="baFaultReasonRelaFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaFaultReasonRelaFacade" />
+	<bean id="baFaultReasonRelaFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaFaultReasonRelaFacadeImpl" />
+	<!-- 维修内容 -->
+	<dubbo:service ref="baRepairMaintFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaRepairMaintFacade" />
+	<bean id="baRepairMaintFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaRepairMaintFacadeImpl" />
+	<!-- 维修内容备件表 -->
+	<dubbo:service ref="baRepairMaintMaterialFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaRepairMaintMaterialFacade" />
+	<bean id="baRepairMaintMaterialFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaRepairMaintMaterialFacadeImpl" />
+
+	<!-- 行政区域管理 -->
+	<dubbo:service ref="baRegionInfoFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaRegionInfoFacade" />
+	<bean id="baRegionInfoFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaRegionInfoFacadeImpl" />
+
+	<!-- 备件类别配置 -->
+	<dubbo:service ref="baMaterialTypeFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaMaterialTypeFacade" />
+	<bean id="baMaterialTypeFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaMaterialTypeFacadeImpl" />
+
+	<!-- 备件档案配置 -->
+	<dubbo:service ref="baMaterialFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaMaterialFacade" />
+	<bean id="baMaterialFacade" class="com.neusoft.cs.ba.core.facade.impl.BaMaterialFacadeImpl" />	
+	<!--  备件品类配置-->
+	<dubbo:service ref="baMaterialProdFacade" interface="com.neusoft.cs.ba.api.facade.BaMaterialProdFacade" />
+	<bean id="baMaterialProdFacade" class="com.neusoft.cs.ba.core.facade.impl.BaMaterialProdFacadeImpl" />	
+    <!--  备件替代配置-->
+	<dubbo:service ref="baMaterialReplaceFacade" interface="com.neusoft.cs.ba.api.facade.BaMaterialReplaceFacade" />
+	<bean id="baMaterialReplaceFacade" class="com.neusoft.cs.ba.core.facade.impl.BaMaterialReplaceFacadeImpl" />			
+	
+		<!--费用类别 -->
+	<dubbo:service ref="baMaintSettlementFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaMaintSettlementFacade"
+		timeout="30000" />
+	<bean id="baMaintSettlementFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaMaintSettlementFacadeImpl" />
+
+
+
+	<!--结算机型 -->
+	<dubbo:service ref="baProductSettlementFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaProductSettlementFacade"
+		timeout="30000" />
+	<bean id="baProductSettlementFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaProductSettlementFacadeImpl" />
+
+
+	<!--结算标准头 -->
+	<dubbo:service ref="baSettStandardHeadFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaSettStandardHeadFacade"
+		timeout="30000" />
+	<bean id="baSettStandardHeadFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaSettStandardHeadFacadeImpl" />
+
+
+	<!--结算标准行 -->
+	<dubbo:service ref="baSettStandardLineFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaSettStandardLineFacade"
+		timeout="30000" />
+	<bean id="baSettStandardLineFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaSettStandardLineFacadeImpl" />
+
+
+	<!--结算标准与使用单位关系 -->
+	<dubbo:service ref="baSettStandardUnitFacade"
+		interface="com.neusoft.cs.ba.api.facade.BaSettStandardUnitFacade"
+		timeout="30000" />
+	<bean id="baSettStandardUnitFacade"
+		class="com.neusoft.cs.ba.core.facade.impl.BaSettStandardUnitFacadeImpl" />
+
+</beans>

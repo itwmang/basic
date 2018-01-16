@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<!-- 注解驱动 -->
-
+<
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean id="S-IRVR"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
