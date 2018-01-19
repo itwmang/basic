@@ -2,9 +2,6 @@ package com.wmang.logis.core.controller.user;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wmang.logis.core.biz.user.SysUserBiz;
 import com.wmang.logis.core.controller.BaseController;
 import com.wmang.logis.mode.dto.vo.user.SysUserVO;
-import com.wmang.logis.core.biz.user.SysUserBiz;
-import com.wmang.logis.mode.utils.base.BaseResponse;
-import com.wmang.logis.mode.utils.base.BodyData;
 import com.wmang.logis.mode.utils.FastJSONHelper;
 import com.wmang.logis.mode.utils.ListCarrier;
 import com.wmang.logis.mode.utils.ValueUtil;
+import com.wmang.logis.mode.utils.base.BaseResponse;
+import com.wmang.logis.mode.utils.base.BodyData;
 
  /**
  * Title: 客户主数据
@@ -41,6 +38,12 @@ public class SysUserController extends BaseController{
 	/** 新增_打开界面 */
 	@RequestMapping(value = "/user/sysUser/add", method = RequestMethod.GET)
 	public String toadd() throws Exception {
+		return "/user/sysUser/sysUser_add";
+	}
+	/** 列表页请求数据 */
+	@ResponseBody
+	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
+	public String listuser() throws Exception {
 		return "/user/sysUser/sysUser_add";
 	}
 	

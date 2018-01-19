@@ -12,11 +12,8 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<!-- 注解驱动 -->
-<
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean id="S-IRVR"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="S-IRVR" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="1" />
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
@@ -27,7 +24,6 @@
 	<!-- spring mvc 上传文件处理类 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- one of the properties available; the maximum file size in bytes -->
 		<property name="maxUploadSize" value="1000000000" />
 	</bean>
 
