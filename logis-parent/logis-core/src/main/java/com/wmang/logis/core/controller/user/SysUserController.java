@@ -42,9 +42,22 @@ public class SysUserController extends BaseController{
 	}
 	/** 列表页请求数据 */
 	@ResponseBody
+<<<<<<< HEAD
+<<<<<<< HEAD
+	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.POST)
+	public BodyData listuser(@RequestParam SysUserVO vo,int pageIndex,int pageSize) throws Exception {
+		List<SysUserVO> list=sysUserBiz.findAllUser(vo,pageIndex,pageSize);
+		return super.success(list);
+=======
 	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
 	public String listuser() throws Exception {
 		return "/user/sysUser/sysUser_add";
+>>>>>>> refs/remotes/origin/develop
+=======
+	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
+	public String listuser() throws Exception {
+		return "/user/sysUser/sysUser_add";
+>>>>>>> branch 'develop' of https://github.com/itwmang/basic.git
 	}
 	
 	/** 新增 */

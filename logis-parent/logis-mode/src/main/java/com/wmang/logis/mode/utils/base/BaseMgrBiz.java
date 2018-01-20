@@ -2,6 +2,8 @@ package com.wmang.logis.mode.utils.base;
 
 import java.util.List;
 
+import com.wmang.logis.mode.dto.vo.user.SysUserVO;
+
 
 /**
  * @Description
@@ -34,6 +36,8 @@ public interface BaseMgrBiz<V,P> {
 	 * @Description 删除
 	 */
 	public BaseResponse<List<P>> delete(List<P> ids,String userId) throws Exception;
+
+	List<SysUserVO> findAllUser(SysUserVO vo, int pageIndex, int pageSize);
 
 	
 }
