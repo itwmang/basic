@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 define([ 'layuijs' ], function(layuijs) {
 	var myModule = {};
 	var moduleName = "sysuser module";
@@ -84,64 +82,6 @@ define([ 'layuijs' ], function(layuijs) {
 				page : true
 			});
 		});
-=======
-define("sysuser", function() {
-	var myModule = {};
-	var moduleName = "sysuser module";
-	var moduleVersion = "1.0.0";
-
-	var sysuserinit = function() {
-		
-		layui.use('table', function(){
-			  var table = layui.table;
-			  
-			  table.render({
-			    elem: '#test'
-			    ,url:'/sysuser/table/user/'
-			    ,cols: [[
-			      {field:'id', width:80, title: 'ID', sort: true}
-			      ,{field:'username', width:80, title: '用户名'}
-			      ,{field:'sex', width:80, title: '性别', sort: true}
-			      ,{field:'city', width:80, title: '城市'}
-			      ,{field:'sign', title: '签名', minWidth: 150}
-			      ,{field:'experience', width:80, title: '积分', sort: true}
-			      ,{field:'score', width:80, title: '评分', sort: true}
-			      ,{field:'classify', width:80, title: '职业'}
-			      ,{field:'wealth', width:135, title: '财富', sort: true}
-			    ]]
-			    ,page: true
-			  });
-			});
->>>>>>> refs/remotes/origin/develop
-=======
-define("sysuser", function() {
-	var myModule = {};
-	var moduleName = "sysuser module";
-	var moduleVersion = "1.0.0";
-
-	var sysuserinit = function() {
-		
-		layui.use('table', function(){
-			  var table = layui.table;
-			  
-			  table.render({
-			    elem: '#test'
-			    ,url:'/sysuser/table/user/'
-			    ,cols: [[
-			      {field:'id', width:80, title: 'ID', sort: true}
-			      ,{field:'username', width:80, title: '用户名'}
-			      ,{field:'sex', width:80, title: '性别', sort: true}
-			      ,{field:'city', width:80, title: '城市'}
-			      ,{field:'sign', title: '签名', minWidth: 150}
-			      ,{field:'experience', width:80, title: '积分', sort: true}
-			      ,{field:'score', width:80, title: '评分', sort: true}
-			      ,{field:'classify', width:80, title: '职业'}
-			      ,{field:'wealth', width:135, title: '财富', sort: true}
-			    ]]
-			    ,page: true
-			  });
-			});
->>>>>>> branch 'develop' of https://github.com/itwmang/basic.git
 	};
 
 	myModule.sysuserinit = sysuserinit;
