@@ -42,7 +42,7 @@ public class SysUserController extends BaseController{
 	}
 	/** 列表页请求数据 */
 	@ResponseBody
-	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
 	public BodyData listuser(@RequestParam SysUserVO vo,int pageIndex,int pageSize) throws Exception {
 		List<SysUserVO> list=sysUserBiz.findAllUser(vo,pageIndex,pageSize);
 		return super.success(list);
