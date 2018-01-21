@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans default-lazy-init="true"
-	xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -11,55 +10,33 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-<context:component-scan base-package="com.wmang.logis.core.controller"/>
-	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean id="S-IRVR" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="1" />
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/web" />
+
+	<!-- 自动扫描controller配置 -->
+	<mvc:annotation-driven />
+	<context:annotation-config />
+	<!-- DispatcherServlet上下文， 只管理@Controller类型的bean， 忽略其他型的bean, 如@Service -->
+	<context:component-scan base-package="com.wmang.logis.core.controller.user">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/web/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<!-- spring mvc 上传文件处理类 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="1000000000" />
-	</bean>
+	<!-- 静态资源处理， css， js， imgs -->
+	<!-- <mvc:resources mapping="/css/**" location="/WEB-INF/resource/" /> -->
 
 	<!-- 对静态资源文件的访问 不支持访问WEB-INF目录 -->
 	<mvc:default-servlet-handler />
 
-	<bean id="stringConverter"
-		class="org.springframework.http.converter.StringHttpMessageConverter">
-		<!-- 避免IE在ajax请求时，返回字符串出现下载 -->
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/plain;charset=UTF-8</value>
-			</list>
-		</property>
-	</bean>
-
-
-
-
-
-	<!-- 自定义 -->
-
-	<!-- css-web SpringMVC总配置文件 -->
-	<context:component-scan base-package="com.wmang.core.**" />
-
-	<context:component-scan base-package="com.wmang.core"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Repository" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Component" />
-	</context:component-scan>
+	<!-- <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter"> -->
+	<!-- 避免IE在ajax请求时，返回字符串出现下载 -->
+	<!-- <property name="supportedMediaTypes"> -->
+	<!-- <list> -->
+	<!-- <value>text/plain;charset=UTF-8</value> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 
 </beans>

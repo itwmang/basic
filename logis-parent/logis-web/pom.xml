@@ -10,20 +10,30 @@
 	<packaging>war</packaging>
 	<name>logis-web</name>
 	<description>前台,配置文件..</description>
+	<properties>
+		<profiles.dir>src/profiles</profiles.dir>
+		<finalName>logis-web</finalName>
+	</properties>
 
 
 	<dependencies>
 		<dependency>
-				<groupId>com.wmang.logis</groupId>
-				<artifactId>logis-core</artifactId>
-			</dependency>
+			<groupId>com.wmang.logis</groupId>
+			<artifactId>logis-core</artifactId>
+		</dependency>
 	</dependencies>
-
 
 	<profiles>
 
 		<profile>
 			<id>local</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/local</directory>
+					</resource>
+				</resources>
+			</build>
 			<properties>
 				<integration>false</integration>
 			</properties>
@@ -34,6 +44,13 @@
 
 		<profile>
 			<id>dev</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/dev</directory>
+					</resource>
+				</resources>
+			</build>
 			<properties>
 				<integration>false</integration>
 			</properties>
@@ -41,6 +58,13 @@
 
 		<profile>
 			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${profiles.dir}/prod</directory>
+					</resource>
+				</resources>
+			</build>
 			<properties>
 				<integration>true</integration>
 			</properties>
@@ -49,23 +73,39 @@
 	</profiles>
 
 	<build>
+		<finalName>logis-web</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
 		<plugins>
+			<!-- maven打包工具 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<!--指定web.xml文件的位置 -->
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<!--指定jsp等文件所在位置 -->
+					<warSourceDirectory>src/web</warSourceDirectory>
+				</configuration>
+			</plugin>
+			<!-- Tomcat插件自动部署配置 -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
 				<configuration>
-					<url>http://localhost:8080/manager/text</url>
-					<server>tomcat</server>
-					<username>deployer</username>
-					<password>admin</password>
+					<!-- Tomcat6将text替换为html -->
+					<url>http://localhost:7070/manager/text</url>
+					<!-- 以下三项与Maven的Setting文件一致 -->
+					<server>tomcat7x</server>
+					<username>admin</username>
+					<password>admin123</password>
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>logis-web</finalName>
 	</build>
 </project>
