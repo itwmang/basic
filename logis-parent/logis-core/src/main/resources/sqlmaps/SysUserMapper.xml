@@ -4,7 +4,7 @@
 
 	<!-- ********************** 以下部分为代码自动生成，不能修改！！！ ********************************** -->
 
-	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.SysUser;">
+	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.SysUser">
 		<id column="id" property="id" />		<!-- 主键 -->
 		<result column="account" property="account" />		<!-- 账号 -->
 		<result column="name" property="name" />		<!-- 名称 -->
@@ -43,7 +43,7 @@
 		where id = #{id}
 	</delete>
 
-	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.wmang.logis.mode.entity.user.SysUser;">
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.wmang.logis.mode.entity.user.SysUser">
 		insert into sys_user
 		(<include refid="baseColumnList" />
 		)
@@ -111,7 +111,7 @@
 		where id = #{record.id}
 	</update>
 
-	<update id="update" parameterType="com.wmang.logis.mode.entity.user.SysUser;">
+	<update id="update" parameterType="com.wmang.logis.mode.entity.user.SysUser">
 		update sys_user
 		set id=#{id},account=#{account},name=#{name},passwd=#{passwd},email=#{email},
 			user_type=#{userType},user_status=#{userStatus},phone=#{phone},address=#{address},version=#{version},
