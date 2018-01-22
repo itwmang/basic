@@ -15,7 +15,22 @@ public class BaseResponse<T> extends BasicResponse implements Serializable {
 	private static final long serialVersionUID = 8913107009427739407L;
 
 	private T returnObject;
-	
+
+	private int pageIndex;
+	private int pageSize;
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 	private List<T> list;// 数据列表
 
 	public List<T> getList() {

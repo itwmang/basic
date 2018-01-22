@@ -1,6 +1,7 @@
-package com.wmang.logis.mode.dto.vo.user;
+package com.wmang.logis.mode.dto.response;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
  /**
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
 @org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown = true)
-public class SysUserVO implements Serializable {
+public class SysUserResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

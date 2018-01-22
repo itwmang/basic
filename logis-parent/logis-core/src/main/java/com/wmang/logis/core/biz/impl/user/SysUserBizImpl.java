@@ -23,20 +23,26 @@ import com.wmang.logis.mode.utils.base.BaseService;
 import com.wmang.logis.mode.utils.base.CommonExample;
 import com.wmang.logis.mode.utils.pagehelper.PageHelper;
 
- /**
+/**
  * Title: 客户主数据
- * <p>Description: 客户主数据BizImpl类</p>
+ * <p>
+ * Description: 客户主数据BizImpl类
+ * </p>
+ * 
  * @Author: wmang
  * @CreateDate: 2018-01
  * @version 1.0 初稿
  */
 @Service("sysUserBiz")
-public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO,SysUser,Integer> implements SysUserBiz {
-	
+public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integer> implements SysUserBiz {
+
 	protected static Logger logger = LoggerFactory.getLogger(SysUserBizImpl.class);
-	
-	protected static List<String> updateColumns=Arrays.asList(SysUser.account_,SysUser.name_,SysUser.passwd_,SysUser.email_,SysUser.userType_,SysUser.userStatus_,SysUser.phone_,SysUser.address_,SysUser.lastupdatePasswd_,SysUser.pubValidly_,SysUser.pubRemark_,SysUser.pubCreatePerson_,SysUser.pubCreateDate_,SysUser.pubModiPerson_,SysUser.pubModiDate_);
-	
+
+	protected static List<String> updateColumns = Arrays.asList(SysUser.account_, SysUser.name_, SysUser.passwd_,
+			SysUser.email_, SysUser.userType_, SysUser.userStatus_, SysUser.phone_, SysUser.address_,
+			SysUser.lastupdatePasswd_, SysUser.pubValidly_, SysUser.pubRemark_, SysUser.pubCreatePerson_,
+			SysUser.pubCreateDate_, SysUser.pubModiPerson_, SysUser.pubModiDate_);
+
 	@Autowired
 	private SysUserService sysUserService;
 
@@ -54,13 +60,13 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO,SysUser,Integer
 	public List<String> getUpdateColumns() {
 		return updateColumns;
 	}
-	
+
 	@Override
 	public BaseResponse<SysUserVO> update(SysUserVO vo, String userId) throws Exception {
 		// TODO: vo.setOther...
 		return super.update(vo, userId);
 	}
-	
+
 	@Override
 	public BaseResponse<SysUserVO> save(SysUserVO vo, String userId) throws Exception {
 		// TODO: vo.setOther...
@@ -72,26 +78,27 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO,SysUser,Integer
 		List<SysUserVO> listvo = new ArrayList<SysUserVO>();
 		try {
 			CommonExample example = new CommonExample();
-			if(StringUtils.isNotBlank(vo.getAccount())){
+			if (StringUtils.isNotBlank(vo.getAccount())) {
 				example.andEqStr(SysUser.account_, vo.getAccount());
 			}
-			if(StringUtils.isNotBlank(vo.getName())){
+			if (StringUtils.isNotBlank(vo.getName())) {
 				example.andEqStr(SysUser.name_, vo.getName());
 			}
-			if(pageIndex > 0 && pageSize > 0){
+			if (pageIndex > 0 && pageSize > 0) {
 				PageHelper.startPage(pageIndex, pageSize);
 			}
 			List<SysUser> list = sysUserService.listByCondition(example);
-			if(CollectionUtils.isNotEmpty(list)){
-				SysUserExchanger ex =new  SysUserExchanger();
+			if (CollectionUtils.isNotEmpty(list)) {
+				SysUserExchanger ex = new SysUserExchanger();
 				for (SysUser sysUser : list) {
 					listvo.add(ex.dbToVo(sysUser));
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
 		return listvo;
 	}
+
 }

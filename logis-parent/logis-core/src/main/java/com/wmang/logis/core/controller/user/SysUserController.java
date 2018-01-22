@@ -22,75 +22,83 @@ import com.wmang.logis.mode.utils.ValueUtil;
 import com.wmang.logis.mode.utils.base.BaseResponse;
 import com.wmang.logis.mode.utils.base.BodyData;
 
- /**
- * Title: 客户主数据
- * Description: 客户主数据Controller类
+/**
+ * Title: 客户主数据 Description: 客户主数据Controller类
+ * 
  * @Author: wmang
  * @CreateDate: 2018-01
  * @version 1.0 初稿
  */
 @Controller
-public class SysUserController extends BaseController{
-	
+public class SysUserController extends BaseController {
+
 	@Autowired
 	private SysUserBiz sysUserBiz;
-	
+
 	/** 新增_打开界面 */
 	@RequestMapping(value = "/user/sysUser/add", method = RequestMethod.GET)
 	public String toadd() throws Exception {
 		return "/user/sysUser/sysUser_add";
 	}
+
 	/** 列表页请求数据 */
 	@ResponseBody
 	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
-	public BodyData listuser(@RequestParam SysUserVO vo,int pageIndex,int pageSize) throws Exception {
-		List<SysUserVO> list=sysUserBiz.findAllUser(vo,pageIndex,pageSize);
+	public BodyData listuser(@RequestParam String queryuser, int pageIndex, int pageSize) throws Exception {
+		SysUserVO vo = FastJSONHelper.deserialize(queryuser, SysUserVO.class);
+		List<SysUserVO> list = sysUserBiz.findAllUser(vo, pageIndex, pageSize);
 		return super.success(list);
 	}
-	
+
 	/** 新增 */
 	@RequestMapping(value = "/user/sysUser/save", method = RequestMethod.POST)
 	@ResponseBody
 	public BodyData save(@RequestBody SysUserVO vo) throws Exception {
-		BaseResponse<SysUserVO> response=sysUserBiz.save(vo, "");
+		BaseResponse<SysUserVO> response = sysUserBiz.save(vo, "");
 		return super.success(response);
 	}
-	
+
 	/** 更新_打开界面 */
 	@RequestMapping(value = "/user/sysUser/edit/{id}", method = RequestMethod.GET)
-	public String toupdate(@PathVariable("id") Integer id,Model model) throws Exception {
-		BaseResponse<SysUserVO> response=sysUserBiz.findOne(id);
+	public String toupdate(@PathVariable("id") Integer id, Model model) throws Exception {
+		BaseResponse<SysUserVO> response = sysUserBiz.findOne(id);
 		model.addAttribute("modelFromServer", FastJSONHelper.serialize(response.getReturnObject()));
 		return "/user/sysUser/sysUser_edit";
 	}
+
 	/** 查看_打开界面 */
 	@RequestMapping(value = "/user/sysUser/view/{id}", method = RequestMethod.GET)
-	public String toview(@PathVariable("id") Integer id,Model model) throws Exception {
-		BaseResponse<SysUserVO> response=sysUserBiz.findOne(id);
+	public String toview(@PathVariable("id") Integer id, Model model) throws Exception {
+		BaseResponse<SysUserVO> response = sysUserBiz.findOne(id);
 		model.addAttribute("modelFromServer", FastJSONHelper.serialize(response.getReturnObject()));
 		model.addAttribute("operate", "view");
 		return "/user/sysUser/sysUser_edit";
 	}
-	
+
 	/** 更新 */
 	@RequestMapping(value = "/user/sysUser/update", method = RequestMethod.POST)
 	@ResponseBody
 	public BodyData update(@RequestBody SysUserVO vo) throws Exception {
-		BaseResponse<SysUserVO> response=sysUserBiz.update(vo, "");
+		BaseResponse<SysUserVO> response = sysUserBiz.update(vo, "");
 		return super.success(response);
 	}
-	
+
 	/** 删除 */
 	@RequestMapping(value = "/user/sysUser/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public BodyData delete(@RequestParam("ids")  String ids) throws Exception {
-		List<Integer> listId=new ListCarrier<String, Integer>() {
+	public BodyData delete(@RequestParam("ids") String ids) throws Exception {
+		List<Integer> listId = new ListCarrier<String, Integer>() {
 			@Override
 			public Integer carry(String source) throws Exception {
 				return ValueUtil.toInt(source);
 			}
 		}.carryList(Arrays.asList(ids.split(",")));
-		BaseResponse<List<Integer>> response=sysUserBiz.delete(listId, "");
+		BaseResponse<List<Integer>> response = sysUserBiz.delete(listId, "");
 		return super.success(response);
 	}
+
+	public SysUserController() {
+		super();
+	}
+
 }

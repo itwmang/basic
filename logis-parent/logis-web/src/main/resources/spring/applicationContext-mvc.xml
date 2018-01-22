@@ -15,7 +15,7 @@
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<!-- DispatcherServlet上下文， 只管理@Controller类型的bean， 忽略其他型的bean, 如@Service -->
-	<context:component-scan base-package="com.wmang.logis.core.controller.user">
+	<context:component-scan base-package="com.wmang.logis.core.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,14 +29,13 @@
 	<!-- 对静态资源文件的访问 不支持访问WEB-INF目录 -->
 	<mvc:default-servlet-handler />
 
-	<!-- <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter"> -->
-	<!-- 避免IE在ajax请求时，返回字符串出现下载 -->
-	<!-- <property name="supportedMediaTypes"> -->
-	<!-- <list> -->
-	<!-- <value>text/plain;charset=UTF-8</value> -->
-	<!-- </list> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
+	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<!-- 避免IE在ajax请求时，返回字符串出现下载 -->
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

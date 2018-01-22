@@ -23,7 +23,7 @@ define([ 'layuijs' ], function(layuijs) {
 			var table = layui.table;
 			
 			rootPath = getRootPath();
-			
+			var param = {account:"test"};
 			table.render({
 				elem : '#user-table',
 				url : rootPath+'/user/sysUser/listuser',
@@ -31,9 +31,9 @@ define([ 'layuijs' ], function(layuijs) {
 					pageName: 'pageIndex', //页码的参数名称，默认：page
 					limitName: 'pageSize' //每页数据量的参数名，默认：limit
 				},
-				method:"post",
+				method:"get",
 				where:{
-					vo:{account:"test"}
+					queryuser:JSON.stringify(param)
 				},
 				cols : [ [ {
 					type : 'radiobox'
