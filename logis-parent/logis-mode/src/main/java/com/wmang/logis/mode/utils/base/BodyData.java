@@ -3,12 +3,9 @@ package com.wmang.logis.mode.utils.base;
 import java.io.Serializable;
 
 /**
- * @Description
- * @department 东软集团_流程IT_售后系统_CSS产品
- * @author 李强
- * @date 2015年11月25日
+ * @author wmang
  */
-public class BodyData implements Serializable{
+public class BodyData implements Serializable {
 	/**
 	 * @fieldName: serialVersionUID
 	 * @fieldType: long
@@ -22,7 +19,7 @@ public class BodyData implements Serializable{
 	 * 响应报文
 	 */
 	private Object content;
-	
+
 	/**
 	 * 错误信息,格式为:{msg:'no data';errorCode:"100"}
 	 */
@@ -33,7 +30,7 @@ public class BodyData implements Serializable{
 		rb.setStatus(status);
 		return rb;
 	}
-	
+
 	public ResponseError getError() {
 		return error;
 	}
@@ -57,7 +54,7 @@ public class BodyData implements Serializable{
 	public void setContent(Object content) {
 		this.content = content;
 	}
-	
+
 	public void setError(String errorCode, String errorMsg) {
 		setError(errorCode, errorMsg, null);
 	}
