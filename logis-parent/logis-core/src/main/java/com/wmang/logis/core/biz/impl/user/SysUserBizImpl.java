@@ -1,6 +1,5 @@
 package com.wmang.logis.core.biz.impl.user;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,9 +17,11 @@ import com.wmang.logis.mode.dto.vo.user.SysUserVO;
 import com.wmang.logis.mode.entity.user.SysUser;
 import com.wmang.logis.mode.utils.base.AbstractBaseMgrBiz;
 import com.wmang.logis.mode.utils.base.AbstractExchanger;
+import com.wmang.logis.mode.utils.base.BasePageResponse;
 import com.wmang.logis.mode.utils.base.BaseResponse;
 import com.wmang.logis.mode.utils.base.BaseService;
 import com.wmang.logis.mode.utils.base.CommonExample;
+import com.wmang.logis.mode.utils.pagehelper.Page;
 import com.wmang.logis.mode.utils.pagehelper.PageHelper;
 
 /**
@@ -74,8 +75,9 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 	}
 
 	@Override
-	public List<SysUserVO> findAllUser(SysUserVO vo, int pageIndex, int pageSize) {
-		List<SysUserVO> listvo = new ArrayList<SysUserVO>();
+	public BasePageResponse findAllUser(SysUserVO vo, int pageIndex, int pageSize) {
+		BasePageResponse res = new BasePageResponse();
+//		List<SysUserVO> listvo = new ArrayList<SysUserVO>();
 		try {
 			CommonExample example = new CommonExample();
 			if (StringUtils.isNotBlank(vo.getAccount())) {
@@ -88,17 +90,24 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 				PageHelper.startPage(pageIndex, pageSize);
 			}
 			List<SysUser> list = sysUserService.listByCondition(example);
+			
 			if (CollectionUtils.isNotEmpty(list)) {
-				SysUserExchanger ex = new SysUserExchanger();
-				for (SysUser sysUser : list) {
-					listvo.add(ex.dbToVo(sysUser));
+				if(list instanceof Page) {
+					
+					Page<SysUser> page = (Page<SysUser>) list;
+					res.setCount(page.getTotal());
+					res.setData(page.getResult());
 				}
+//				SysUserExchanger ex = new SysUserExchanger();
+//				for (SysUser sysUser : list) {
+//					listvo.add(ex.dbToVo(sysUser));
+//				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
-		return listvo;
+		return res;
 	}
 
 }

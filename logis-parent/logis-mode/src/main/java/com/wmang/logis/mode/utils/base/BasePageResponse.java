@@ -4,67 +4,50 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @company 东软集团股份有限公司
+ * @company 分页基础响应类
  * @Description: 分页基础响应类
  * 2015年5月25日 下午3:54:12 
  * @version 1.0 
  */
-public class BasePageResponse<T> extends BasicResponse implements Serializable{
+public class BasePageResponse extends BasicResponse implements Serializable{
 
 	/**
      * 
      */
     private static final long serialVersionUID = -8282921583302038221L;
-	private Integer pageIndex;// 分页索引,#从1开始
-	private Integer pageSize;// 分页大小,
-	private Integer pageCount;// 分页总数,
-	private Integer total;//总数
-	private List<T> rows;// 数据列表
-
-	public Integer getPageIndex() {
-		return pageIndex;
+    private int code;
+    private String msg;
+    private long count;
+    private List<?> data;
+	public int getCode() {
+		return code;
 	}
-
-	public void setPageIndex(Integer pageIndex) {
-		this.pageIndex = pageIndex;
+	public void setCode(int code) {
+		this.code = code;
 	}
-
-	public Integer getPageSize() {
-		return pageSize;
+	public String getMsg() {
+		return msg;
 	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public Integer getPageCount() {
-		return pageCount;
-	}
-
-	public void setPageCount(Integer pageCount) {
-		this.pageCount = pageCount;
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	
-	public Integer getTotal() {
-		return total;
+	public long getCount() {
+		return count;
 	}
-
-	public void setTotal(Integer total) {
-		this.total = total;
+	public void setCount(long count) {
+		this.count = count;
 	}
-
-	/**
-	 * @return the rows
-	 */
-	public List<T> getRows() {
-		return rows;
+	
+	public List<?> getData() {
+		return data;
 	}
-
-	/**
-	 * @param rows the rows to set
-	 */
-	public void setRows(List<T> rows) {
-		this.rows = rows;
+	public void setData(List<?> data) {
+		this.data = data;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
 
 }
