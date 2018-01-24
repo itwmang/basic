@@ -19,6 +19,7 @@ import com.wmang.logis.mode.dto.vo.user.SysUserVO;
 import com.wmang.logis.mode.utils.FastJSONHelper;
 import com.wmang.logis.mode.utils.ListCarrier;
 import com.wmang.logis.mode.utils.ValueUtil;
+import com.wmang.logis.mode.utils.base.BasePageResponse;
 import com.wmang.logis.mode.utils.base.BaseResponse;
 import com.wmang.logis.mode.utils.base.BodyData;
 
@@ -44,10 +45,10 @@ public class SysUserController extends BaseController {
 	/** 列表页请求数据 */
 	@ResponseBody
 	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
-	public BodyData listuser(@RequestParam String queryuser, int pageIndex, int pageSize) throws Exception {
+	public BasePageResponse listuser(@RequestParam String queryuser, int pageIndex, int pageSize) throws Exception {
 		SysUserVO vo = FastJSONHelper.deserialize(queryuser, SysUserVO.class);
-		List<SysUserVO> list = sysUserBiz.findAllUser(vo, pageIndex, pageSize);
-		return super.success(list);
+		BasePageResponse res = sysUserBiz.findAllUser(vo, pageIndex, pageSize);
+		return res;
 	}
 
 	/** 新增 */

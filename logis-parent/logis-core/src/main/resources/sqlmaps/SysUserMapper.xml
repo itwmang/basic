@@ -7,7 +7,7 @@
 	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.SysUser">
 		<id column="id" property="id" />		<!-- 主键 -->
 		<result column="account" property="account" />		<!-- 账号 -->
-		<result column="name" property="name" />		<!-- 名称 -->
+		<result column="name_" property="name" />		<!-- 名称 -->
 		<result column="passwd" property="passwd" />		<!-- 密码 -->
 		<result column="email" property="email" />		<!-- 邮箱 -->
 		<result column="user_type" property="userType" />		<!-- 用户类型 -->
@@ -24,7 +24,7 @@
 	</resultMap>
 
 	<sql id="baseColumnList">
-		id,account,name,passwd,email,
+		id,account,name_,passwd,email,
 		user_type,user_status,phone,address,version,
 		pub_validly,pub_remark,pub_create_person,pub_create_date,pub_modi_person,
 		pub_modi_date
@@ -63,8 +63,8 @@
 					<when test="column=='account' || column=='account'">
 						account=#{record.account}
 					</when>
-					<when test="column=='name' || column=='name'">
-						name=#{record.name}
+					<when test="column=='name_' || column=='name'">
+						name_=#{record.name}
 					</when>
 					<when test="column=='passwd' || column=='passwd'">
 						passwd=#{record.passwd}
@@ -113,7 +113,7 @@
 
 	<update id="update" parameterType="com.wmang.logis.mode.entity.user.SysUser">
 		update sys_user
-		set id=#{id},account=#{account},name=#{name},passwd=#{passwd},email=#{email},
+		set id=#{id},account=#{account},name_=#{name},passwd=#{passwd},email=#{email},
 			user_type=#{userType},user_status=#{userStatus},phone=#{phone},address=#{address},version=#{version},
 			pub_validly=#{pubValidly},pub_remark=#{pubRemark},pub_create_person=#{pubCreatePerson},pub_create_date=#{pubCreateDate},pub_modi_person=#{pubModiPerson},
 			pub_modi_date=#{pubModiDate}

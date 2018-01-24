@@ -73,6 +73,8 @@ public class SysUser implements Serializable {
 	/** 账户是否有效 */
 	private String pubValidly;
 	/** 备注 */
+	private String version;
+	/** 备注 */
 	private String pubRemark;
 	/** 创建人 */
 	private String pubCreatePerson;
@@ -211,4 +213,11 @@ public class SysUser implements Serializable {
 	public void setPubModiDate(Date pubModiDate) {
 		this.pubModiDate=pubModiDate;
 	}
+	public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	
 }

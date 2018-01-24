@@ -1,9 +1,8 @@
 package com.wmang.logis.core.biz.user;
 
-import java.util.List;
-
 import com.wmang.logis.mode.dto.vo.user.SysUserVO;
 import com.wmang.logis.mode.utils.base.BaseMgrBiz;
+import com.wmang.logis.mode.utils.base.BasePageResponse;
 
  /**
  * Title: 客户主数据
@@ -22,6 +21,6 @@ public interface SysUserBiz extends BaseMgrBiz<SysUserVO,Integer> {
 	 * @param pageSize
 	 * @return
 	 */
-	List<SysUserVO> findAllUser(SysUserVO vo, int pageIndex, int pageSize);
+	BasePageResponse findAllUser(SysUserVO vo, int pageIndex, int pageSize);
 
 }

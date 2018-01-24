@@ -26,12 +26,13 @@ define([ 'layuijs' ], function(layuijs) {
 			var param = {account:"test"};
 			table.render({
 				elem : '#user-table',
+				height: 'full-20', //高度最大化减去差值
 				url : rootPath+'/user/sysUser/listuser',
+				method:"get",
 				request:{
 					pageName: 'pageIndex', //页码的参数名称，默认：page
 					limitName: 'pageSize' //每页数据量的参数名，默认：limit
 				},
-				method:"get",
 				where:{
 					queryuser:JSON.stringify(param)
 				},
@@ -43,40 +44,44 @@ define([ 'layuijs' ], function(layuijs) {
 					title : 'ID',
 					sort : true
 				}, {
-					field : 'username',
+					field : 'account',
 					width : 80,
 					title : '用户名'
 				}, {
-					field : 'sex',
+					field : 'name_',
 					width : 80,
-					title : '性别',
+					title : '名称'
+				}, {
+					field : 'email',
+					width : 120,
+					title : '邮箱',
 					sort : true
 				}, {
-					field : 'city',
-					width : 80,
-					title : '城市'
+					field : 'userTyep',
+					width : 100,
+					title : '用户类型'
 				}, {
-					field : 'sign',
-					title : '签名',
-					minWidth : 150
+					field : 'userStatus',
+					title : '用户状态',
+					minWidth : 100
 				}, {
-					field : 'experience',
+					field : 'pubCreatePerson',
 					width : 80,
-					title : '积分',
+					title : '创建人',
 					sort : true
 				}, {
-					field : 'score',
-					width : 80,
-					title : '评分',
+					field : 'pubCreateDate',
+					width : 120,
+					title : '创建时间',
 					sort : true
 				}, {
-					field : 'classify',
+					field : 'pubModiPerson',
 					width : 80,
-					title : '职业'
+					title : '修改人'
 				}, {
-					field : 'wealth',
-					width : 135,
-					title : '财富',
+					field : 'pubModiDate',
+					width : 120,
+					title : '修改时间',
 					sort : true
 				} ] ],
 				page : true
