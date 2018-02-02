@@ -6,7 +6,7 @@ require.config({
 		sysuser:	"js/sysuser/sysuser"
 	}
 });
-
+//测试
 require([ 'sysuser' ], function(sysuser) {
 	sysuser.sysuserinit();
 });
