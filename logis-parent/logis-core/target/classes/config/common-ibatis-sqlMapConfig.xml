@@ -13,8 +13,11 @@
 	</settings>
 	
 	<plugins>
-		<plugin interceptor="com.neusoft.framework.utils.pagehelper.PageHelper">
-			<property name="dialect" value="oracle" />
+		<plugin interceptor="com.wmang.logis.mode.utils.pagehelper.PageHelper">
+			<property name="dialect" value="mysql" />
+		</plugin>
+		<plugin interceptor="com.wmang.logis.mode.interceptor.PresetInterceptor">
+			<property name="dialect" value="mysql" />
 		</plugin>
 	</plugins>
 </configuration>

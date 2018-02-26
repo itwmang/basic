@@ -1,13 +1,14 @@
 package com.wmang.logis.mode.dto.vo.user;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
  /**
  * Title: 客户主数据
  * Description: 客户主数据VO类
  * @Author: wmang
- * @CreateDate: 2018-01
+ * @CreateDate: 2018-02
  * @version 1.0 初稿
  */
 @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
@@ -43,29 +44,29 @@ public class SysUserVO implements Serializable {
 	/** 密码最后修改时间结束 **/
 	private String lastupdatePasswdEndStr;
 	/** 账户是否有效 **/
-	private String pubValidly;
+	private String validly;
 	/** 备注 **/
-	private String pubRemark;
+	private String remark;
 	/** 创建人 **/
-	private String pubCreatePerson;
+	private String creater;
 	/** 创建时间 **/
-	private Date pubCreateDate;
+	private Date createTime;
 	/** 创建时间字符 **/
-	private String pubCreateDateStr;
+	private String createTimeStr;
 	/** 创建时间开始 **/
-	private String pubCreateDateBeginStr;
+	private String createTimeBeginStr;
 	/** 创建时间结束 **/
-	private String pubCreateDateEndStr;
+	private String createTimeEndStr;
 	/** 修改人 **/
-	private String pubModiPerson;
+	private String updater;
 	/** 修改时间 **/
-	private Date pubModiDate;
+	private Date updateTime;
 	/** 修改时间字符 **/
-	private String pubModiDateStr;
+	private String updateTimeStr;
 	/** 修改时间开始 **/
-	private String pubModiDateBeginStr;
+	private String updateTimeBeginStr;
 	/** 修改时间结束 **/
-	private String pubModiDateEndStr;
+	private String updateTimeEndStr;
 	
 	/** 主键 */
 	public Integer getId() {
@@ -172,99 +173,99 @@ public class SysUserVO implements Serializable {
 		this.lastupdatePasswdEndStr=lastupdatePasswdEndStr;
 	}
 	/** 账户是否有效 */
-	public String getPubValidly() {
-		return pubValidly;
+	public String getValidly() {
+		return validly;
 	}
 	/** 账户是否有效 */
-	public void setPubValidly(String pubValidly) {
-		this.pubValidly=pubValidly;
+	public void setValidly(String validly) {
+		this.validly=validly;
 	}
 	/** 备注 */
-	public String getPubRemark() {
-		return pubRemark;
+	public String getRemark() {
+		return remark;
 	}
 	/** 备注 */
-	public void setPubRemark(String pubRemark) {
-		this.pubRemark=pubRemark;
+	public void setRemark(String remark) {
+		this.remark=remark;
 	}
 	/** 创建人 */
-	public String getPubCreatePerson() {
-		return pubCreatePerson;
+	public String getCreater() {
+		return creater;
 	}
 	/** 创建人 */
-	public void setPubCreatePerson(String pubCreatePerson) {
-		this.pubCreatePerson=pubCreatePerson;
+	public void setCreater(String creater) {
+		this.creater=creater;
 	}
 	/** 创建时间 */
-	public Date getPubCreateDate() {
-		return pubCreateDate;
+	public Date getCreateTime() {
+		return createTime;
 	}
 	/** 创建时间 */
-	public void setPubCreateDate(Date pubCreateDate) {
-		this.pubCreateDate=pubCreateDate;
+	public void setCreateTime(Date createTime) {
+		this.createTime=createTime;
 	}
 	/** 创建时间字符 **/
-	public String getPubCreateDateStr() {
-		return pubCreateDateStr;
+	public String getCreateTimeStr() {
+		return createTimeStr;
 	}
 	/** 创建时间字符 **/
-	public void setPubCreateDateStr(String pubCreateDateStr) {
-		this.pubCreateDateStr=pubCreateDateStr;
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr=createTimeStr;
 	}
 	/** 创建时间开始 **/
-	public String getPubCreateDateBeginStr() {
-		return pubCreateDateBeginStr;
+	public String getCreateTimeBeginStr() {
+		return createTimeBeginStr;
 	}
 	/** 创建时间开始 **/
-	public void setPubCreateDateBeginStr(String pubCreateDateBeginStr) {
-		this.pubCreateDateBeginStr=pubCreateDateBeginStr;
+	public void setCreateTimeBeginStr(String createTimeBeginStr) {
+		this.createTimeBeginStr=createTimeBeginStr;
 	}
 	/** 创建时间结束 **/
-	public String getPubCreateDateEndStr() {
-		return pubCreateDateEndStr;
+	public String getCreateTimeEndStr() {
+		return createTimeEndStr;
 	}
 	/** 创建时间结束 **/
-	public void setPubCreateDateEndStr(String pubCreateDateEndStr) {
-		this.pubCreateDateEndStr=pubCreateDateEndStr;
+	public void setCreateTimeEndStr(String createTimeEndStr) {
+		this.createTimeEndStr=createTimeEndStr;
 	}
 	/** 修改人 */
-	public String getPubModiPerson() {
-		return pubModiPerson;
+	public String getUpdater() {
+		return updater;
 	}
 	/** 修改人 */
-	public void setPubModiPerson(String pubModiPerson) {
-		this.pubModiPerson=pubModiPerson;
+	public void setUpdater(String updater) {
+		this.updater=updater;
 	}
 	/** 修改时间 */
-	public Date getPubModiDate() {
-		return pubModiDate;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 	/** 修改时间 */
-	public void setPubModiDate(Date pubModiDate) {
-		this.pubModiDate=pubModiDate;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime=updateTime;
 	}
 	/** 修改时间字符 **/
-	public String getPubModiDateStr() {
-		return pubModiDateStr;
+	public String getUpdateTimeStr() {
+		return updateTimeStr;
 	}
 	/** 修改时间字符 **/
-	public void setPubModiDateStr(String pubModiDateStr) {
-		this.pubModiDateStr=pubModiDateStr;
+	public void setUpdateTimeStr(String updateTimeStr) {
+		this.updateTimeStr=updateTimeStr;
 	}
 	/** 修改时间开始 **/
-	public String getPubModiDateBeginStr() {
-		return pubModiDateBeginStr;
+	public String getUpdateTimeBeginStr() {
+		return updateTimeBeginStr;
 	}
 	/** 修改时间开始 **/
-	public void setPubModiDateBeginStr(String pubModiDateBeginStr) {
-		this.pubModiDateBeginStr=pubModiDateBeginStr;
+	public void setUpdateTimeBeginStr(String updateTimeBeginStr) {
+		this.updateTimeBeginStr=updateTimeBeginStr;
 	}
 	/** 修改时间结束 **/
-	public String getPubModiDateEndStr() {
-		return pubModiDateEndStr;
+	public String getUpdateTimeEndStr() {
+		return updateTimeEndStr;
 	}
 	/** 修改时间结束 **/
-	public void setPubModiDateEndStr(String pubModiDateEndStr) {
-		this.pubModiDateEndStr=pubModiDateEndStr;
+	public void setUpdateTimeEndStr(String updateTimeEndStr) {
+		this.updateTimeEndStr=updateTimeEndStr;
 	}
 }

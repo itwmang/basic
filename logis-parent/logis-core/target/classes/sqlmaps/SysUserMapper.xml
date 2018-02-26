@@ -4,30 +4,30 @@
 
 	<!-- ********************** 以下部分为代码自动生成，不能修改！！！ ********************************** -->
 
-	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.SysUser;">
+	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.SysUser">
 		<id column="id" property="id" />		<!-- 主键 -->
 		<result column="account" property="account" />		<!-- 账号 -->
-		<result column="name" property="name" />		<!-- 名称 -->
+		<result column="name_" property="name" />		<!-- 名称 -->
 		<result column="passwd" property="passwd" />		<!-- 密码 -->
 		<result column="email" property="email" />		<!-- 邮箱 -->
 		<result column="user_type" property="userType" />		<!-- 用户类型 -->
 		<result column="user_status" property="userStatus" />		<!-- 用户状态 -->
 		<result column="phone" property="phone" />		<!-- 电话号码 -->
 		<result column="address" property="address" />		<!-- 家庭地址 -->
-		<result column="version" property="version" />		<!-- 密码最后修改时间 -->
-		<result column="pub_validly" property="pubValidly" />		<!-- 账户是否有效 -->
-		<result column="pub_remark" property="pubRemark" />		<!-- 备注 -->
-		<result column="pub_create_person" property="pubCreatePerson" />		<!-- 创建人 -->
-		<result column="pub_create_date" property="pubCreateDate" />		<!-- 创建时间 -->
-		<result column="pub_modi_person" property="pubModiPerson" />		<!-- 修改人 -->
-		<result column="pub_modi_date" property="pubModiDate" />		<!-- 修改时间 -->
+		<result column="lastupdate_passwd" property="lastupdatePasswd" />		<!-- 密码最后修改时间 -->
+		<result column="validly" property="validly" />		<!-- 账户是否有效 -->
+		<result column="remark" property="remark" />		<!-- 备注 -->
+		<result column="creater" property="creater" />		<!-- 创建人 -->
+		<result column="create_time" property="createTime" />		<!-- 创建时间 -->
+		<result column="updater" property="updater" />		<!-- 修改人 -->
+		<result column="update_time" property="updateTime" />		<!-- 修改时间 -->
 	</resultMap>
 
 	<sql id="baseColumnList">
-		id,account,name,passwd,email,
-		user_type,user_status,phone,address,version,
-		pub_validly,pub_remark,pub_create_person,pub_create_date,pub_modi_person,
-		pub_modi_date
+		id,account,name_,passwd,email,
+		user_type,user_status,phone,address,lastupdate_passwd,
+		validly,remark,creater,create_time,updater,
+		update_time
 	</sql>
 
 	<select id="findOne" resultMap="baseResultMap" parameterType="Integer">
@@ -43,15 +43,15 @@
 		where id = #{id}
 	</delete>
 
-	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.wmang.logis.mode.entity.user.SysUser;">
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.wmang.logis.mode.entity.user.SysUser">
 		insert into sys_user
 		(<include refid="baseColumnList" />
 		)
 		values
 		(	#{id},#{account},#{name},#{passwd},#{email},
-			#{userType},#{userStatus},#{phone},#{address},#{version},
-			#{pubValidly},#{pubRemark},#{pubCreatePerson},#{pubCreateDate},#{pubModiPerson},
-			#{pubModiDate}
+			#{userType},#{userStatus},#{phone},#{address},#{lastupdatePasswd},
+			#{validly},#{remark},#{creater},#{createTime},#{updater},
+			#{updateTime}
 		)
 	</insert>
 
@@ -63,8 +63,8 @@
 					<when test="column=='account' || column=='account'">
 						account=#{record.account}
 					</when>
-					<when test="column=='name' || column=='name'">
-						name=#{record.name}
+					<when test="column=='name_' || column=='name'">
+						name_=#{record.name}
 					</when>
 					<when test="column=='passwd' || column=='passwd'">
 						passwd=#{record.passwd}
@@ -84,26 +84,26 @@
 					<when test="column=='address' || column=='address'">
 						address=#{record.address}
 					</when>
-					<when test="column=='version' || column=='version'">
-						version=#{record.version}
+					<when test="column=='lastupdate_passwd' || column=='lastupdatePasswd'">
+						lastupdate_passwd=#{record.lastupdatePasswd}
 					</when>
-					<when test="column=='pub_validly' || column=='pubValidly'">
-						pub_validly=#{record.pubValidly}
+					<when test="column=='validly' || column=='validly'">
+						validly=#{record.validly}
 					</when>
-					<when test="column=='pub_remark' || column=='pubRemark'">
-						pub_remark=#{record.pubRemark}
+					<when test="column=='remark' || column=='remark'">
+						remark=#{record.remark}
 					</when>
-					<when test="column=='pub_create_person' || column=='pubCreatePerson'">
-						pub_create_person=#{record.pubCreatePerson}
+					<when test="column=='creater' || column=='creater'">
+						creater=#{record.creater}
 					</when>
-					<when test="column=='pub_create_date' || column=='pubCreateDate'">
-						pub_create_date=#{record.pubCreateDate}
+					<when test="column=='create_time' || column=='createTime'">
+						create_time=#{record.createTime}
 					</when>
-					<when test="column=='pub_modi_person' || column=='pubModiPerson'">
-						pub_modi_person=#{record.pubModiPerson}
+					<when test="column=='updater' || column=='updater'">
+						updater=#{record.updater}
 					</when>
-					<when test="column=='pub_modi_date' || column=='pubModiDate'">
-						pub_modi_date=#{record.pubModiDate}
+					<when test="column=='update_time' || column=='updateTime'">
+						update_time=#{record.updateTime}
 					</when>
 				</choose>
 			</foreach>
@@ -111,12 +111,12 @@
 		where id = #{record.id}
 	</update>
 
-	<update id="update" parameterType="com.wmang.logis.mode.entity.user.SysUser;">
+	<update id="update" parameterType="com.wmang.logis.mode.entity.user.SysUser">
 		update sys_user
-		set id=#{id},account=#{account},name=#{name},passwd=#{passwd},email=#{email},
-			user_type=#{userType},user_status=#{userStatus},phone=#{phone},address=#{address},version=#{version},
-			pub_validly=#{pubValidly},pub_remark=#{pubRemark},pub_create_person=#{pubCreatePerson},pub_create_date=#{pubCreateDate},pub_modi_person=#{pubModiPerson},
-			pub_modi_date=#{pubModiDate}
+		set id=#{id},account=#{account},name_=#{name},passwd=#{passwd},email=#{email},
+			user_type=#{userType},user_status=#{userStatus},phone=#{phone},address=#{address},lastupdate_passwd=#{lastupdatePasswd},
+			validly=#{validly},remark=#{remark},creater=#{creater},create_time=#{createTime},updater=#{updater},
+			update_time=#{updateTime}
 		where id = #{id}
 	</update>
 	

@@ -13,7 +13,7 @@ import com.wmang.logis.mode.utils.base.AbstractExchanger;
  * Title: 客户主数据
  * Description: 客户主数据Exchanger类 
  * @Author: wmang
- * @CreateDate: 2018-01
+ * @CreateDate: 2018-02
  * @version 1.0 初稿
  */
 public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
@@ -31,14 +31,13 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 		vo.setAddress(db.getAddress());
 		vo.setLastupdatePasswd(db.getLastupdatePasswd());
 		vo.setLastupdatePasswdStr(DateUtil.DateToString(db.getLastupdatePasswd(), "yyyy-MM-dd HH:mm:ss"));
-		vo.setPubValidly(db.getPubValidly());
-		vo.setPubRemark(db.getPubRemark());
-		vo.setPubCreatePerson(db.getPubCreatePerson());
-		vo.setPubCreateDate(db.getPubCreateDate());
-		vo.setPubCreateDateStr(DateUtil.DateToString(db.getPubCreateDate(), "yyyy-MM-dd HH:mm:ss"));
-		vo.setPubModiPerson(db.getPubModiPerson());
-		vo.setPubModiDate(db.getPubModiDate());
-		vo.setPubModiDateStr(DateUtil.DateToString(db.getPubModiDate(), "yyyy-MM-dd HH:mm:ss"));
+		vo.setValidly(db.getValidly());
+		vo.setRemark(db.getRemark());
+		vo.setCreater(db.getCreater());
+		vo.setCreateTime(db.getCreateTime());
+		vo.setUpdater(db.getUpdater());
+		vo.setUpdateTime(db.getUpdateTime());
+		vo.setUpdateTimeStr(DateUtil.DateToString(db.getUpdateTime(), "yyyy-MM-dd HH:mm:ss"));
 	}
 	
 	@Override
@@ -57,19 +56,15 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 		} else {
 			db.setLastupdatePasswd(ValueUtil.toDateNull(vo.getLastupdatePasswdStr()));
 		}
-		db.setPubValidly(vo.getPubValidly());
-		db.setPubRemark(vo.getPubRemark());
-		db.setPubCreatePerson(vo.getPubCreatePerson());
-		if (vo.getPubCreateDate()!=null) {
-			db.setPubCreateDate(vo.getPubCreateDate());
+		db.setValidly(vo.getValidly());
+		db.setRemark(vo.getRemark());
+		db.setCreater(vo.getCreater());
+		db.setCreateTime(vo.getCreateTime());
+		db.setUpdater(vo.getUpdater());
+		if (vo.getUpdateTime()!=null) {
+			db.setUpdateTime(vo.getUpdateTime());
 		} else {
-			db.setPubCreateDate(ValueUtil.toDateNull(vo.getPubCreateDateStr()));
-		}
-		db.setPubModiPerson(vo.getPubModiPerson());
-		if (vo.getPubModiDate()!=null) {
-			db.setPubModiDate(vo.getPubModiDate());
-		} else {
-			db.setPubModiDate(ValueUtil.toDateNull(vo.getPubModiDateStr()));
+			db.setUpdateTime(ValueUtil.toDateNull(vo.getUpdateTimeStr()));
 		}
 	}
 	
@@ -86,14 +81,13 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 		vo.setAddress(ValueUtil.toStr(map.get("address")));
 		vo.setLastupdatePasswd(ValueUtil.toDateNull(map.get("lastupdatePasswd")));
 		vo.setLastupdatePasswdStr(DateUtil.DateToString(vo.getLastupdatePasswd(), "yyyy-MM-dd HH:mm:ss"));
-		vo.setPubValidly(ValueUtil.toStr(map.get("pubValidly")));
-		vo.setPubRemark(ValueUtil.toStr(map.get("pubRemark")));
-		vo.setPubCreatePerson(ValueUtil.toStr(map.get("pubCreatePerson")));
-		vo.setPubCreateDate(ValueUtil.toDateNull(map.get("pubCreateDate")));
-		vo.setPubCreateDateStr(DateUtil.DateToString(vo.getPubCreateDate(), "yyyy-MM-dd HH:mm:ss"));
-		vo.setPubModiPerson(ValueUtil.toStr(map.get("pubModiPerson")));
-		vo.setPubModiDate(ValueUtil.toDateNull(map.get("pubModiDate")));
-		vo.setPubModiDateStr(DateUtil.DateToString(vo.getPubModiDate(), "yyyy-MM-dd HH:mm:ss"));
+		vo.setValidly(ValueUtil.toStr(map.get("validly")));
+		vo.setRemark(ValueUtil.toStr(map.get("remark")));
+		vo.setCreater(ValueUtil.toStr(map.get("creater")));
+		vo.setCreateTime(ValueUtil.toDateNull(map.get("createTime")));
+		vo.setUpdater(ValueUtil.toStr(map.get("updater")));
+		vo.setUpdateTime(ValueUtil.toDateNull(map.get("updateTime")));
+		vo.setUpdateTimeStr(DateUtil.DateToString(vo.getUpdateTime(), "yyyy-MM-dd HH:mm:ss"));
 	}
 
 	@Override

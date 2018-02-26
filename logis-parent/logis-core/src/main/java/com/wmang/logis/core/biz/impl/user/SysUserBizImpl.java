@@ -1,6 +1,5 @@
 package com.wmang.logis.core.biz.impl.user;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wmang.logis.core.biz.user.SysUserBiz;
-import com.wmang.logis.core.exchanger.user.SysUserExchanger;
 import com.wmang.logis.core.service.user.SysUserService;
 import com.wmang.logis.mode.dto.vo.user.SysUserVO;
 import com.wmang.logis.mode.entity.user.SysUser;
@@ -39,10 +37,6 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 
 	protected static Logger logger = LoggerFactory.getLogger(SysUserBizImpl.class);
 
-	protected static List<String> updateColumns = Arrays.asList(SysUser.account_, SysUser.name_, SysUser.passwd_,
-			SysUser.email_, SysUser.userType_, SysUser.userStatus_, SysUser.phone_, SysUser.address_,
-			SysUser.lastupdatePasswd_, SysUser.pubValidly_, SysUser.pubRemark_, SysUser.pubCreatePerson_,
-			SysUser.pubCreateDate_, SysUser.pubModiPerson_, SysUser.pubModiDate_);
 
 	@Autowired
 	private SysUserService sysUserService;
@@ -52,15 +46,6 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 		return sysUserService;
 	}
 
-	@Override
-	public AbstractExchanger<SysUserVO, SysUser> getExchanger() {
-		return new SysUserExchanger();
-	}
-
-	@Override
-	public List<String> getUpdateColumns() {
-		return updateColumns;
-	}
 
 	@Override
 	public BaseResponse<SysUserVO> update(SysUserVO vo, String userId) throws Exception {
@@ -108,6 +93,20 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 
 		}
 		return res;
+	}
+
+
+	@Override
+	public AbstractExchanger<SysUserVO, SysUser> getExchanger() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<String> getUpdateColumns() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

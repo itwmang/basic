@@ -8,7 +8,7 @@ import java.util.Date;
  * Title: 客户主数据
  * Description: 客户主数据Entity类,工具生成，请勿修改  
  * @Author: wmang
- * @CreateDate: 2018-01
+ * @CreateDate: 2018-02
  * @version 1.0 初稿
  */
 public class SysUser implements Serializable {
@@ -38,17 +38,17 @@ public class SysUser implements Serializable {
 	/** 密码最后修改时间 */
 	public final static String lastupdatePasswd_="lastupdate_passwd";
 	/** 账户是否有效 */
-	public final static String pubValidly_="pub_validly";
+	public final static String validly_="validly";
 	/** 备注 */
-	public final static String pubRemark_="pub_remark";
+	public final static String remark_="remark";
 	/** 创建人 */
-	public final static String pubCreatePerson_="pub_create_person";
+	public final static String creater_="creater";
 	/** 创建时间 */
-	public final static String pubCreateDate_="pub_create_date";
+	public final static String createTime_="create_time";
 	/** 修改人 */
-	public final static String pubModiPerson_="pub_modi_person";
+	public final static String updater_="updater";
 	/** 修改时间 */
-	public final static String pubModiDate_="pub_modi_date";
+	public final static String updateTime_="update_time";
 
 	/** 主键 */
 	private Integer id;
@@ -71,19 +71,17 @@ public class SysUser implements Serializable {
 	/** 密码最后修改时间 */
 	private Date lastupdatePasswd;
 	/** 账户是否有效 */
-	private String pubValidly;
+	private String validly;
 	/** 备注 */
-	private String version;
-	/** 备注 */
-	private String pubRemark;
+	private String remark;
 	/** 创建人 */
-	private String pubCreatePerson;
+	private String creater;
 	/** 创建时间 */
-	private Date pubCreateDate;
+	private Date createTime;
 	/** 修改人 */
-	private String pubModiPerson;
+	private String updater;
 	/** 修改时间 */
-	private Date pubModiDate;
+	private Date updateTime;
 	
 	/** 主键 */
 	public Integer getId() {
@@ -166,58 +164,51 @@ public class SysUser implements Serializable {
 		this.lastupdatePasswd=lastupdatePasswd;
 	}
 	/** 账户是否有效 */
-	public String getPubValidly() {
-		return pubValidly;
+	public String getValidly() {
+		return validly;
 	}
 	/** 账户是否有效 */
-	public void setPubValidly(String pubValidly) {
-		this.pubValidly=pubValidly;
+	public void setValidly(String validly) {
+		this.validly=validly;
 	}
 	/** 备注 */
-	public String getPubRemark() {
-		return pubRemark;
+	public String getRemark() {
+		return remark;
 	}
 	/** 备注 */
-	public void setPubRemark(String pubRemark) {
-		this.pubRemark=pubRemark;
+	public void setRemark(String remark) {
+		this.remark=remark;
 	}
 	/** 创建人 */
-	public String getPubCreatePerson() {
-		return pubCreatePerson;
+	public String getCreater() {
+		return creater;
 	}
 	/** 创建人 */
-	public void setPubCreatePerson(String pubCreatePerson) {
-		this.pubCreatePerson=pubCreatePerson;
+	public void setCreater(String creater) {
+		this.creater=creater;
 	}
 	/** 创建时间 */
-	public Date getPubCreateDate() {
-		return pubCreateDate;
+	public Date getCreateTime() {
+		return createTime;
 	}
 	/** 创建时间 */
-	public void setPubCreateDate(Date pubCreateDate) {
-		this.pubCreateDate=pubCreateDate;
+	public void setCreateTime(Date createTime) {
+		this.createTime=createTime;
 	}
 	/** 修改人 */
-	public String getPubModiPerson() {
-		return pubModiPerson;
+	public String getUpdater() {
+		return updater;
 	}
 	/** 修改人 */
-	public void setPubModiPerson(String pubModiPerson) {
-		this.pubModiPerson=pubModiPerson;
+	public void setUpdater(String updater) {
+		this.updater=updater;
 	}
 	/** 修改时间 */
-	public Date getPubModiDate() {
-		return pubModiDate;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 	/** 修改时间 */
-	public void setPubModiDate(Date pubModiDate) {
-		this.pubModiDate=pubModiDate;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime=updateTime;
 	}
-	public String getVersion() {
-		return version;
-	}
-	public void setVersion(String version) {
-		this.version = version;
-	}
-	
 }

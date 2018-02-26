@@ -1,10 +1,10 @@
-define([ 'layuijs' ], function(layuijs) {
+define([ 'layuijs','common' ], function(layuijs,common) {
 	var myModule = {};
 	var moduleName = "sysuser module";
 	var moduleVersion = "1.0.0";
-	
-	var rootPath= "";
-	function getRootPath(){
+
+	var rootPath = "";
+	function getRootPath() {
 		var curWwwPath = window.document.location.href;
 		// 获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
 		var pathName = window.document.location.pathname;
@@ -12,29 +12,38 @@ define([ 'layuijs' ], function(layuijs) {
 		// 获取主机地址，如： http://localhost:8083
 		var localhostPaht = curWwwPath.substring(0, pos);
 		// 获取带"/"的项目名，如：/uimcardprj
-		var projectName = localhostPaht + pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+		var projectName = localhostPaht
+				+ pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
 		return projectName;
 	}
-	
+
+	/** 添加用户页面初始化 */
+	var addUserInit = function() {
+		
+	}
+
+	/** 用户列表初始化 */
 	var sysuserinit = function() {
 
 		layui.use('table', function() {
-			
+
 			var table = layui.table;
-			
+
 			rootPath = getRootPath();
-			var param = {account:"test"};
+			var param = {
+				account : "test"
+			};
 			table.render({
 				elem : '#user-table',
-				height: 'full-20', //高度最大化减去差值
-				url : rootPath+'/user/sysUser/listuser',
-				method:"get",
-				request:{
-					pageName: 'pageIndex', //页码的参数名称，默认：page
-					limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				height : 'full-20', // 高度最大化减去差值
+				url : rootPath + '/user/sysUser/listuser',
+				method : "get",
+				request : {
+					pageName : 'pageIndex', // 页码的参数名称，默认：page
+					limitName : 'pageSize' // 每页数据量的参数名，默认：limit
 				},
-				where:{
-					queryuser:JSON.stringify(param)
+				where : {
+					queryuser : JSON.stringify(param)
 				},
 				cols : [ [ {
 					type : 'radiobox'
@@ -87,8 +96,14 @@ define([ 'layuijs' ], function(layuijs) {
 				page : true
 			});
 		});
+		
+		//绑定按钮
+		$("#addbtn").on("click",function(){
+			common.layerWinOpen('添加管理员','user-add.html','800','600');
+		});
 	};
 
+	myModule.addUserInit = addUserInit;
 	myModule.sysuserinit = sysuserinit;
 
 	myModule.moduleName = moduleName;
