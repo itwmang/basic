@@ -16,7 +16,10 @@ public class BaseController  {
 
 	public BodyData success(Object response) {
 		// TODO Auto-generated method stub
-		return null;
+		BodyData b = new BodyData();
+		b.setStatus(true);
+		b.setContent(response);
+		return b;
 	}
 	
 }

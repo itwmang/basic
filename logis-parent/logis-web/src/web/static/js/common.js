@@ -16,6 +16,23 @@ define([ 'layuijs'],function(){
 	/** 弹出层 
 	 * 参数解释： title 标题 url 请求的url id 需要操作的数据id w 弹出层宽度（缺省调默认值） h 弹出层高度（缺省调默认值）
 	 */
+	function tips(title,content,callback){
+		if (title == null || title == '') {
+			title=false;
+		};
+		return layer.open({
+			type: 1,
+			fix: false, // 不固定
+			maxmin: true,
+			shade:0.4,
+			title: title,
+			content: '<div style="padding: 20px 50px;">'+ content +'</div>',
+			success:callback
+		});
+	}
+	/** 弹出层 
+	 * 参数解释： title 标题 url 请求的url id 需要操作的数据id w 弹出层宽度（缺省调默认值） h 弹出层高度（缺省调默认值）
+	 */
 	function layerWinOpen(title,url,w,h,callback){
 		if (title == null || title == '') {
 			title=false;
@@ -44,9 +61,28 @@ define([ 'layuijs'],function(){
 	function layerWinClose(index){
 		layer.close(index);
 	}
+	
+	
+	var rootPath = "";
+	function getRootPath() {
+		var curWwwPath = window.document.location.href;
+		// 获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+		var pathName = window.document.location.pathname;
+		var pos = curWwwPath.indexOf(pathName);
+		// 获取主机地址，如： http://localhost:8083
+		var localhostPaht = curWwwPath.substring(0, pos);
+		// 获取带"/"的项目名，如：/uimcardprj
+		var projectName = localhostPaht
+				+ pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+		return projectName;
+	}
+	
+	myModule.tips = tips;
 	myModule.layerWinOpen = layerWinOpen;
 	myModule.layerWinClose = layerWinClose;
 
+	myModule.rootPath = getRootPath();
+	
 	myModule.moduleName = moduleName;
 	myModule.moduleVersion = moduleVersion;
 

@@ -21,7 +21,7 @@ define([ 'jquery' ], function($) {
 			type:"post",
 			data:param,
 			url:url,
-			async:true,
+			async:false,
 			success:callback,
 			error:errorFn
 		});
@@ -31,7 +31,7 @@ define([ 'jquery' ], function($) {
 			type:"get",
 			data:param,
 			url:url,
-			async:true,
+			async:false,
 			success:callback,
 			error:errorFn
 		});

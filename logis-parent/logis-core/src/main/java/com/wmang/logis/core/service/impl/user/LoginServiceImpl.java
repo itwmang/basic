@@ -35,4 +35,9 @@ public class LoginServiceImpl extends AbstractService<SysUser, Integer> implemen
 		return sysUserMapper;
 	}
 
+	@Override
+	public int validateLogin(String account, String passwd) {
+		return sysUserExtMapper.validateLogin(account,passwd);
+	}
+
 }

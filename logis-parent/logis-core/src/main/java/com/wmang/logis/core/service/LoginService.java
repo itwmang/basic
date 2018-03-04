@@ -12,4 +12,6 @@ import com.wmang.logis.mode.utils.base.BaseService;
  */
 public interface LoginService extends BaseService<SysUser,Integer> {
 
+	int validateLogin(String account, String passwd);
+
 }

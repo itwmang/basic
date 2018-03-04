@@ -1,5 +1,6 @@
 package com.wmang.logis.core.dao.user;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
  /**
@@ -11,5 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("sysUserExtMapper")
 public interface SysUserExtMapper {
+
+	int validateLogin(@Param("account")String account, @Param("passwd")String passwd);
 	
 }
