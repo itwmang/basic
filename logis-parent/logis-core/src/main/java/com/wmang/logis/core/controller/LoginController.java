@@ -1,9 +1,10 @@
 package com.wmang.logis.core.controller;
 
+import java.util.Base64;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,15 @@ public class LoginController extends BaseController {
 	public BodyData login(@RequestParam("account") String account, @RequestParam("passwd") String passwd,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println(account.concat("  ").concat(passwd));
+		account = Base64.getDecoder().decode(new String(account.getBytes(),"UTF-8")).toString();
+		passwd = Base64.getDecoder().decode(new String(passwd.getBytes(),"UTF-8")).toString();
 		boolean b = loginBiz.validateLogin(account, passwd);
 		if (b) {
 			// 加入session
 			SysUser user = loginBiz.findUserByAccount(account);
 			session.setAttribute(Constants.user_account, user.getAccount());
-			session.setAttribute(Constants.user_name, user.getName());
+			session.setAttribute(Constants.user_name, user.getName_());
+			session.setAttribute(Constants.login_user, user);
 			return super.success(true);
 		} else {
 			return super.success(false);

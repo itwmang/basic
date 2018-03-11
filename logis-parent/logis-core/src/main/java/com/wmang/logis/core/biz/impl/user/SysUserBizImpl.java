@@ -66,10 +66,10 @@ public class SysUserBizImpl extends AbstractBaseMgrBiz<SysUserVO, SysUser, Integ
 		try {
 			CommonExample example = new CommonExample();
 			if (StringUtils.isNotBlank(vo.getAccount())) {
-				example.andEqStr(SysUser.account_, vo.getAccount());
+				example.andLike(SysUser.account_, vo.getAccount());
 			}
-			if (StringUtils.isNotBlank(vo.getName())) {
-				example.andEqStr(SysUser.name_, vo.getName());
+			if (StringUtils.isNotBlank(vo.getName_())) {
+				example.andLike(SysUser.name__, vo.getName_());
 			}
 			if (pageIndex > 0 && pageSize > 0) {
 				PageHelper.startPage(pageIndex, pageSize);

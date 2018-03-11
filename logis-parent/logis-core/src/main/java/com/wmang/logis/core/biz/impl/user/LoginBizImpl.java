@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.wmang.logis.core.biz.user.LoginBiz;
 import com.wmang.logis.core.service.LoginService;
 import com.wmang.logis.mode.entity.user.SysUser;
+import com.wmang.logis.mode.utils.Md5Util;
 import com.wmang.logis.mode.utils.base.CommonExample;
 
 /**
@@ -33,6 +34,8 @@ public class LoginBizImpl implements LoginBiz{
 
 	@Override
 	public boolean validateLogin(String account, String passwd) {
+		String pass_ = passwd.concat(account);
+		passwd = Md5Util.md5(pass_);
 		int count = loginService.validateLogin(account,passwd);
 		return count > 0 ? true : false;
 	}

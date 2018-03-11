@@ -22,7 +22,7 @@ public class SysUserVO implements Serializable {
 	/** 账号 **/
 	private String account;
 	/** 名称 **/
-	private String name;
+	private String name_;
 	/** 密码 **/
 	private String passwd;
 	/** 邮箱 **/
@@ -84,13 +84,12 @@ public class SysUserVO implements Serializable {
 	public void setAccount(String account) {
 		this.account=account;
 	}
-	/** 名称 */
-	public String getName() {
-		return name;
+	
+	public String getName_() {
+		return name_;
 	}
-	/** 名称 */
-	public void setName(String name) {
-		this.name=name;
+	public void setName_(String name_) {
+		this.name_ = name_;
 	}
 	/** 密码 */
 	public String getPasswd() {

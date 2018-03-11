@@ -31,7 +31,7 @@ define([ 'layuijs','common' ], function(layuijs,common) {
 
 			rootPath = getRootPath();
 			var param = {
-				account : "test"
+				account : ""
 			};
 			table.render({
 				elem : '#user-table',
@@ -97,6 +97,30 @@ define([ 'layuijs','common' ], function(layuijs,common) {
 			});
 		});
 		
+		//绑定按钮
+		$("#querybtn").on("click",function(){
+			layui.use('table', function() {
+
+				var table = layui.table;
+				
+				var param = {};
+				var account = $("#account").val();
+				var name_ = $("#name_").val();
+				if(account){
+					param["account"] = account;
+				}
+				if(name_){
+					param["name_"] = name_;
+				}
+				
+				table.reload("user-table",{
+					where : {
+						queryuser : JSON.stringify(param)
+					},
+				})
+				
+			});
+		});
 		//绑定按钮
 		$("#addbtn").on("click",function(){
 			common.layerWinOpen('添加管理员','user-add.html','800','600');

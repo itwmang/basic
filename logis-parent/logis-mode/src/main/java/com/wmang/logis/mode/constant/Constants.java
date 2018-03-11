@@ -10,5 +10,6 @@ public class Constants {
 	
 	public static final String user_account = "user_account";
 	public static final String user_name = "user_name";
+	public static final String login_user = "login_user";
 
 }

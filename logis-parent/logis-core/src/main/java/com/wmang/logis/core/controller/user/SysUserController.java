@@ -3,6 +3,7 @@ package com.wmang.logis.core.controller.user;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,11 @@ public class SysUserController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/user/sysUser/listuser", method = RequestMethod.GET)
 	public BasePageResponse listuser(@RequestParam String queryuser, int pageIndex, int pageSize) throws Exception {
-		SysUserVO vo = FastJSONHelper.deserialize(queryuser, SysUserVO.class);
+		
+		SysUserVO vo = new SysUserVO();
+		if(StringUtils.isNotBlank(queryuser)){
+			vo =  FastJSONHelper.deserialize(new String(queryuser.getBytes("iso-8859-1"),"utf-8"), SysUserVO.class);
+		}
 		BasePageResponse res = sysUserBiz.findAllUser(vo, pageIndex, pageSize);
 		return res;
 	}
@@ -62,6 +67,7 @@ public class SysUserController extends BaseController {
 	/** 更新_打开界面 */
 	@RequestMapping(value = "/user/sysUser/edit/{id}", method = RequestMethod.GET)
 	public String toupdate(@PathVariable("id") Integer id, Model model) throws Exception {
+		
 		BaseResponse<SysUserVO> response = sysUserBiz.findOne(id);
 		model.addAttribute("modelFromServer", FastJSONHelper.serialize(response.getReturnObject()));
 		return "/user/sysUser/sysUser_edit";

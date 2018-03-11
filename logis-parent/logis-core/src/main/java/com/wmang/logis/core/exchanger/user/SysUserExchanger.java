@@ -22,7 +22,7 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 	public void dbFillVo(SysUser db,SysUserVO vo) {
 		vo.setId(db.getId());
 		vo.setAccount(db.getAccount());
-		vo.setName(db.getName());
+		vo.setName_(db.getName_());
 		vo.setPasswd(db.getPasswd());
 		vo.setEmail(db.getEmail());
 		vo.setUserType(db.getUserType());
@@ -44,7 +44,7 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 	public void voFillDb(SysUserVO vo,SysUser db) {
 		db.setId(vo.getId());
 		db.setAccount(vo.getAccount());
-		db.setName(vo.getName());
+		db.setName_(vo.getName_());
 		db.setPasswd(vo.getPasswd());
 		db.setEmail(vo.getEmail());
 		db.setUserType(vo.getUserType());
@@ -72,7 +72,7 @@ public class SysUserExchanger extends AbstractExchanger<SysUserVO,SysUser> {
 	public void mapFillVo(Map<String,?> map,SysUserVO vo) {
 		vo.setId(ValueUtil.toIntNull(map.get("id")));
 		vo.setAccount(ValueUtil.toStr(map.get("account")));
-		vo.setName(ValueUtil.toStr(map.get("name")));
+		vo.setName_(ValueUtil.toStr(map.get("name_")));
 		vo.setPasswd(ValueUtil.toStr(map.get("passwd")));
 		vo.setEmail(ValueUtil.toStr(map.get("email")));
 		vo.setUserType(ValueUtil.toStr(map.get("userType")));

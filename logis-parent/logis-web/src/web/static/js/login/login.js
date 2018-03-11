@@ -32,12 +32,13 @@ require([ 'common','ajax_lib','md5'],function(common , ajax , md5 ){
 				common.tips("提示","用户名不能为空，请检查！");
 				return false;
 			}
-			var userpasswd = md5($("#userpasswd").val());
+			var userpasswd = $("#userpasswd").val();
 			if(!userpasswd){
 				common.tips("提示","密码不能为空，请检查！");
 				return false;
 			}
-			var data={account:useraccount,passwd:userpasswd};
+			 var b = new Base64();  
+			var data={account:b.encode(useraccount),passwd:b.encode(userpasswd)};
 			var b = false;
 			ajax.postParam(url,data,function(res){
 				debugger;
