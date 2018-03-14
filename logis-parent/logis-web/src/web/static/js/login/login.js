@@ -5,20 +5,15 @@ require.config({
 		layuijs : "plugins/layui-v2.2.5/layui",
 		ajax_lib:"js/modules/ajax_lib",
 		common:	"js/common",
-		md5:"https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5"
-//		sysuser:	"js/sysuser/sysuser"
-	},
-	shim: {
-	    md5:{
-	        exports: "md5"
-	    }
+		base64:	"js/modules/base64.min"
 	}
 });
 
-require([ 'common','ajax_lib','md5'],function(common , ajax , md5 ){
+require([ 'common','ajax_lib','base64'],function(common , ajax , base64 ){
 		$("#loginbtn").click(function() {
-			debugger;
 			var b = validateLogin();
+			debugger;
+			
 			if(!!b){
 				window.location.href = "index.html";
 			}else{
@@ -29,23 +24,31 @@ require([ 'common','ajax_lib','md5'],function(common , ajax , md5 ){
 			var url= common.rootPath+"/login";
 			var useraccount = $("#useraccount").val();
 			if(!useraccount){
-				common.tips("提示","用户名不能为空，请检查！");
+				layer.open({
+					  type: 0, 
+					  content:"用户名不能为空，请检查！" //这里content是一个普通的String
+					});
 				return false;
 			}
 			var userpasswd = $("#userpasswd").val();
 			if(!userpasswd){
-				common.tips("提示","密码不能为空，请检查！");
+				layer.open({
+					  type: 0, 
+					  content: "密码不能为空，请检查！" //这里content是一个普通的String
+					});
 				return false;
 			}
-			 var b = new Base64();  
-			var data={account:b.encode(useraccount),passwd:b.encode(userpasswd)};
+			var data={account:base64.encode(useraccount),passwd:base64.encode(userpasswd)};
 			var b = false;
 			ajax.postParam(url,data,function(res){
 				debugger;
 				if(res.content){
 					b = true;
 				}else{
-					common.tips("提示","用户密码出错，请检查！");
+					layer.open({
+						  type: 0, 
+						  content: "用户密码出错，请检查！" //这里content是一个普通的String
+						});
 				}
 			});
 			return b;

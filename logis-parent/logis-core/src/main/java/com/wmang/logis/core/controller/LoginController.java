@@ -1,10 +1,10 @@
 package com.wmang.logis.core.controller;
 
-import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,17 +27,18 @@ import com.wmang.logis.mode.utils.base.BodyData;
 @Controller
 public class LoginController extends BaseController {
 
+	private static final String UTF_8 = "utf-8";
 	@Autowired
 	private LoginBiz loginBiz;
 
-	/** 新增_打开界面 */
+	/** 登录 */
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public BodyData login(@RequestParam("account") String account, @RequestParam("passwd") String passwd,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println(account.concat("  ").concat(passwd));
-		account = Base64.getDecoder().decode(new String(account.getBytes(),"UTF-8")).toString();
-		passwd = Base64.getDecoder().decode(new String(passwd.getBytes(),"UTF-8")).toString();
+		account = this.base2Utf(account);
+		passwd =  this.base2Utf(passwd);
 		boolean b = loginBiz.validateLogin(account, passwd);
 		if (b) {
 			// 加入session
@@ -45,10 +46,25 @@ public class LoginController extends BaseController {
 			session.setAttribute(Constants.user_account, user.getAccount());
 			session.setAttribute(Constants.user_name, user.getName_());
 			session.setAttribute(Constants.login_user, user);
-			return super.success(true);
-		} else {
-			return super.success(false);
 		}
+		return super.success(b);
 
 	}
+
+	/** 退出系统 */
+	@ResponseBody
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public BodyData logout(HttpServletRequest request, HttpSession session) throws Exception {
+		// 删除session
+		session.removeAttribute(Constants.user_account);
+		session.removeAttribute(Constants.user_name);
+		session.removeAttribute(Constants.login_user);
+		return super.success(true);
+
+	}
+	
+	private String base2Utf(String value) throws Exception{
+		return new String(Base64.decodeBase64(value.getBytes(UTF_8)), UTF_8);
+	}
+	
 }

@@ -21,49 +21,109 @@ define([ 'jquery' ], function($) {
 			type:"post",
 			data:param,
 			url:url,
+			dataType:'json',
 			async:false,
 			success:callback,
 			error:errorFn
 		});
 	};
-	var postGet = function(url,param,callback) {
+	var getParam = function(url,param,callback,errorFn) {
 		$.ajax({
 			type:"get",
 			data:param,
 			url:url,
+			dataType:'json',
 			async:false,
 			success:callback,
 			error:errorFn
 		});
 	};
-	var asyncPost = function(url,param,callback) {
+
+	var postRequest = function(url,param,callback,errorFn) {
 		$.ajax({
 			type:"post",
 			data:JSON.stringify(param),
 			url:url,
+			contentType:"application/json",
+			async:false,
+			success:callback,
+			error:errorFn
+		});
+	};
+	var getRequest = function(url,param,callback,errorFn) {
+		$.ajax({
+			type:"get",
+			data:JSON.stringify(param),
+			url:url,
+			contentType:"application/json",
+			async:false,
+			success:callback,
+			error:errorFn
+		});
+	};
+	var asyncPost = function(url,param,callback,errorFn) {
+		$.ajax({
+			type:"post",
+			data:JSON.stringify(param),
+			url:url,
+			contentType:"application/json",
 			async:true,
 			success:callback,
 			error:errorFn
 		});
 	};
-	var asyncGet = function(url,param,callback) {
+	var asyncGet = function(url,param,callback,errorFn) {
 		$.ajax({
-			type:"post",
+			type:"get",
 			data:JSON.stringify(param),
 			url:url,
+			contentType:"application/json",
 			async:true,
 			success:callback,
 			error:errorFn
 		});
 	};
-	//没有转换参数为json字符串的post请求
+	var asyncPostParam = function(url,param,callback,errorFn) {
+		$.ajax({
+			type:"post",
+			data:param,
+			url:url,
+			dataType:'json',
+			async:true,
+			success:callback,
+			error:errorFn
+		});
+	};
+	var asyncGetParam = function(url,param,callback,errorFn) {
+		$.ajax({
+			type:"get",
+			data:param,
+			url:url,
+			dataType:'json',
+			async:true,
+			success:callback,
+			error:errorFn
+		});
+	};
+	//转换参数为json字符串的post请求
 	myModule.postParam = postParam;
+	//转换参数为json字符串的get请求
+	myModule.postGet = getParam;
+	
+	//没有转换参数为json字符串的post请求
+	myModule.postRequest = postRequest;
 	//没有转换参数为json字符串的get请求
-	myModule.postGet = postGet;
+	myModule.getRequest = getRequest;
+
 	//转换参数为json字符串的post请求
 	myModule.asyncPost = asyncPost;
 	//转换参数为json字符串的get请求
 	myModule.asyncGet = asyncGet;
+	
+	//没有转换参数为json字符串的post请求
+	myModule.asyncPostParam = asyncPostParam;
+	//没有转换参数为json字符串的get请求
+	myModule.asyncGetParam = asyncGetParam;
 
 	myModule.moduleName = moduleName;
 	myModule.moduleVersion = moduleVersion;

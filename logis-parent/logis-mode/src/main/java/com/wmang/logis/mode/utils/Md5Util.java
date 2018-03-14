@@ -29,4 +29,9 @@ public class Md5Util {
 	    return ret.toString();
 	}
 	
+	
+	public static void main(String[] args) {
+		System.out.println(Md5Util.md5("test1"));
+	}
+	
 }

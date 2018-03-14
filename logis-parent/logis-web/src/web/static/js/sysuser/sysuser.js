@@ -46,8 +46,6 @@ define([ 'layuijs','common' ], function(layuijs,common) {
 					queryuser : JSON.stringify(param)
 				},
 				cols : [ [ {
-					type : 'radiobox'
-				}, {
 					field : 'id',
 					width : 80,
 					title : 'ID',
