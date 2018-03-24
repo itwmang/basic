@@ -638,7 +638,8 @@ public class CommonExample implements Serializable{
 		}
 		
 		protected static String getDateFunction(Object date) {
-			return oracle(date);
+//			return oracle(date);
+			return mysql(date);
 		}
 		
 		

@@ -1,0 +1,42 @@
+package com.wmang.logis.core.service.impl.user;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wmang.logis.core.dao.user.ShippingDocumentsExtMapper;
+import com.wmang.logis.core.dao.user.ShippingDocumentsMapper;
+import com.wmang.logis.core.service.user.ShippingDocumentsService;
+import com.wmang.logis.mode.dto.vo.user.ShippingDocumentsVO;
+import com.wmang.logis.mode.entity.user.ShippingDocuments;
+import com.wmang.logis.mode.utils.base.AbstractService;
+import com.wmang.logis.mode.utils.base.BaseMapper;
+import com.wmang.logis.mode.utils.base.BaseResponse;
+
+ /**
+ * Title: 货运单据
+ * Description: 货运单据ServiceImpl类
+ * @Author: wmang
+ * @CreateDate: 2018-02
+ * @version 1.0 初稿
+ */
+@Service("shippingDocumentsService")
+public class ShippingDocumentsServiceImpl extends AbstractService<ShippingDocuments, Integer> implements ShippingDocumentsService {
+	
+	protected static Logger logger = LoggerFactory.getLogger(ShippingDocumentsServiceImpl.class);
+	
+	@Autowired
+	private ShippingDocumentsMapper shippingDocumentsMapper;
+	
+	@Autowired
+	private ShippingDocumentsExtMapper shippingDocumentsExtMapper;
+
+	@Override
+	public BaseMapper<ShippingDocuments, Integer> getBaseMapper() throws Exception {
+		return shippingDocumentsMapper;
+	}
+
+}

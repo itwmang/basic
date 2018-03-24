@@ -1,0 +1,17 @@
+legend {
+    width: auto;
+    margin-bottom: 0px;
+    font-size: 21px;
+    line-height: 40px;
+    border: 0;
+    border-bottom: 0;
+}
+.layui-field-title{
+    margin: 10px 0;
+}
+.layui-elem-field{
+	margin: 0px 
+}
+.layui-form-item{
+	margin-bottom: 5px;
+}

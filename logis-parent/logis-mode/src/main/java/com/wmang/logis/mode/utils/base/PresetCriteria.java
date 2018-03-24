@@ -177,14 +177,14 @@ public class PresetCriteria extends Criteria implements Serializable{
 		*/
 		if (!valueIsempty(begindate) && valueIsempty(enddate)) {
 			String placeHolder=this.getPlaceHolder(CommonExample.D, begindate);
-			sql=" "+andor+" "+columnName+">= to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+">= str_to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
 		} else if (valueIsempty(begindate) && !valueIsempty(enddate)) {
 			String placeHolder=this.getPlaceHolder(CommonExample.D, enddate);
-			sql=" "+andor+" "+columnName+"<= to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+"<= str_to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
 		} else if (!valueIsempty(begindate) && !valueIsempty(enddate)) {
 			String placeHolder1=this.getPlaceHolder(CommonExample.D, begindate);
 			String placeHolder2=this.getPlaceHolder(CommonExample.D, enddate);
-			sql=" "+andor+" "+columnName+" >= to_date("+placeHolder1+",'yyyy-mm-dd hh24:mi:ss') and "+columnName+" <= to_date("+placeHolder2+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+" >= str_to_date("+placeHolder1+",'yyyy-mm-dd hh24:mi:ss') and "+columnName+" <= str_to_date("+placeHolder2+",'yyyy-mm-dd hh24:mi:ss') ";
 		}
 		if(sql!=null){
 			addCriterion(sql);

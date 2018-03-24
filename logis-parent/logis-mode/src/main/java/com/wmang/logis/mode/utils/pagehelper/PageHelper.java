@@ -93,11 +93,11 @@ public class PageHelper implements Interceptor {
 
 	// 数据库方言
 	/** mysql */
-	// private static String dialect = "mysql";
+	 private static String dialect = "mysql";
 	/** hsqldb */
 	// private static String dialect = "hsqldb";
 	/** oracle */
-	private static String dialect = "oracle";
+//	private static String dialect = "oracle";
 	// RowBounds参数offset作为PageNum使用 - 默认不使用
 	private static boolean offsetAsPageNum = false;
 	// RowBounds是否进行count查询 - 默认不查询

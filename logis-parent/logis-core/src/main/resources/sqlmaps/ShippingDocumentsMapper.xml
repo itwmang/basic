@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmang.logis.core.dao.user.ShippingDocumentsMapper">
+
+	<!-- ********************** 以下部分为代码自动生成，不能修改！！！ ********************************** -->
+
+	<resultMap id="baseResultMap" type="com.wmang.logis.mode.entity.user.ShippingDocuments">
+		<id column="row_id" property="rowId" />		<!-- 单据ID -->
+		<result column="org_code" property="orgCode" />		<!-- 主体编码 -->
+		<result column="bill_no" property="billNo" />		<!-- 单据号 -->
+		<result column="bill_date" property="billDate" />		<!-- 单据日期 -->
+		<result column="receiver" property="receiver" />		<!-- 收货人 -->
+		<result column="receiver_phone" property="receiverPhone" />		<!-- 收货人电话 -->
+		<result column="shipper" property="shipper" />		<!-- 发货人 -->
+		<result column="shipper_phone" property="shipperPhone" />		<!-- 发货人电话 -->
+		<result column="quantity" property="quantity" />		<!-- 数量单位 -->
+		<result column="money" property="money" />		<!-- 货款 -->
+		<result column="freight" property="freight" />		<!-- 运费 -->
+		<result column="total" property="total" />		<!-- 合计 -->
+		<result column="freight_type" property="freightType" />		<!-- 货运方式 -->
+		<result column="driver" property="driver" />		<!-- 司机 -->
+		<result column="remarks" property="remarks" />		<!-- 备注 -->
+		<result column="bill_state" property="billState" />		<!-- 单据状态 -->
+		<result column="receivables_state" property="receivablesState" />		<!-- 收款状态 -->
+		<result column="receivables_type" property="receivablesType" />		<!-- 收款方式 -->
+		<result column="receivables_date" property="receivablesDate" />		<!-- 收款日期 -->
+		<result column="payment_state" property="paymentState" />		<!-- 付款状态 -->
+		<result column="payment_type" property="paymentType" />		<!-- 付款方式 -->
+		<result column="payment_date" property="paymentDate" />		<!-- 付款日期 -->
+		<result column="price_spare_1" property="priceSpare1" />		<!-- 预留1 -->
+		<result column="price_spare_2" property="priceSpare2" />		<!-- 预留2 -->
+		<result column="price_spare_3" property="priceSpare3" />		<!-- 预留3 -->
+		<result column="price_spare_4" property="priceSpare4" />		<!-- 预留4 -->
+		<result column="price_spare_5" property="priceSpare5" />		<!-- 预留5 -->
+		<result column="price_spare_6" property="priceSpare6" />		<!-- 预留6 -->
+		<result column="price_spare_7" property="priceSpare7" />		<!-- 预留7 -->
+		<result column="price_spare_8" property="priceSpare8" />		<!-- 预留8 -->
+		<result column="price_spare_9" property="priceSpare9" />		<!-- 预留9 -->
+		<result column="price_spare_10" property="priceSpare10" />		<!-- 预留10 -->
+		<result column="pub_create_person" property="pubCreatePerson" />		<!-- 创建人 -->
+		<result column="pub_create_date" property="pubCreateDate" />		<!-- 创建时间 -->
+		<result column="pub_modi_person" property="pubModiPerson" />		<!-- 最后修改人 -->
+		<result column="pub_modi_date" property="pubModiDate" />		<!-- 最后修改时间 -->
+	</resultMap>
+
+	<sql id="baseColumnList">
+		row_id,org_code,bill_no,bill_date,receiver,
+		receiver_phone,shipper,shipper_phone,quantity,money,
+		freight,total,freight_type,driver,remarks,
+		bill_state,receivables_state,receivables_type,receivables_date,payment_state,
+		payment_type,payment_date,price_spare_1,price_spare_2,price_spare_3,
+		price_spare_4,price_spare_5,price_spare_6,price_spare_7,price_spare_8,
+		price_spare_9,price_spare_10,pub_create_person,pub_create_date,pub_modi_person,
+		pub_modi_date
+	</sql>
+
+	<select id="findOne" resultMap="baseResultMap" parameterType="Integer">
+		select
+		<include refid="baseColumnList" />
+		from shipping_documents
+		where row_id = #{rowId}
+	</select>
+
+	<delete id="delete" parameterType="Integer">
+		delete from
+		shipping_documents
+		where row_id = #{rowId}
+	</delete>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="rowId" parameterType="com.wmang.logis.mode.entity.user.ShippingDocuments">
+		insert into shipping_documents
+		(<include refid="baseColumnList" />
+		)
+		values
+		(	#{rowId},#{orgCode},#{billNo},#{billDate},#{receiver},
+			#{receiverPhone},#{shipper},#{shipperPhone},#{quantity},#{money},
+			#{freight},#{total},#{freightType},#{driver},#{remarks},
+			#{billState},#{receivablesState},#{receivablesType},#{receivablesDate},#{paymentState},
+			#{paymentType},#{paymentDate},#{priceSpare1},#{priceSpare2},#{priceSpare3},
+			#{priceSpare4},#{priceSpare5},#{priceSpare6},#{priceSpare7},#{priceSpare8},
+			#{priceSpare9},#{priceSpare10},#{pubCreatePerson},#{pubCreateDate},#{pubModiPerson},
+			#{pubModiDate}
+		)
+	</insert>
+
+	<update id="updateSelected">
+		update shipping_documents
+		<set>
+			<foreach collection="columns" item="column" separator=",">
+				<choose>
+					<when test="column=='org_code' || column=='orgCode'">
+						org_code=#{record.orgCode}
+					</when>
+					<when test="column=='bill_no' || column=='billNo'">
+						bill_no=#{record.billNo}
+					</when>
+					<when test="column=='bill_date' || column=='billDate'">
+						bill_date=#{record.billDate}
+					</when>
+					<when test="column=='receiver' || column=='receiver'">
+						receiver=#{record.receiver}
+					</when>
+					<when test="column=='receiver_phone' || column=='receiverPhone'">
+						receiver_phone=#{record.receiverPhone}
+					</when>
+					<when test="column=='shipper' || column=='shipper'">
+						shipper=#{record.shipper}
+					</when>
+					<when test="column=='shipper_phone' || column=='shipperPhone'">
+						shipper_phone=#{record.shipperPhone}
+					</when>
+					<when test="column=='quantity' || column=='quantity'">
+						quantity=#{record.quantity}
+					</when>
+					<when test="column=='money' || column=='money'">
+						money=#{record.money}
+					</when>
+					<when test="column=='freight' || column=='freight'">
+						freight=#{record.freight}
+					</when>
+					<when test="column=='total' || column=='total'">
+						total=#{record.total}
+					</when>
+					<when test="column=='freight_type' || column=='freightType'">
+						freight_type=#{record.freightType}
+					</when>
+					<when test="column=='driver' || column=='driver'">
+						driver=#{record.driver}
+					</when>
+					<when test="column=='remarks' || column=='remarks'">
+						remarks=#{record.remarks}
+					</when>
+					<when test="column=='bill_state' || column=='billState'">
+						bill_state=#{record.billState}
+					</when>
+					<when test="column=='receivables_state' || column=='receivablesState'">
+						receivables_state=#{record.receivablesState}
+					</when>
+					<when test="column=='receivables_type' || column=='receivablesType'">
+						receivables_type=#{record.receivablesType}
+					</when>
+					<when test="column=='receivables_date' || column=='receivablesDate'">
+						receivables_date=#{record.receivablesDate}
+					</when>
+					<when test="column=='payment_state' || column=='paymentState'">
+						payment_state=#{record.paymentState}
+					</when>
+					<when test="column=='payment_type' || column=='paymentType'">
+						payment_type=#{record.paymentType}
+					</when>
+					<when test="column=='payment_date' || column=='paymentDate'">
+						payment_date=#{record.paymentDate}
+					</when>
+					<when test="column=='price_spare_1' || column=='priceSpare1'">
+						price_spare_1=#{record.priceSpare1}
+					</when>
+					<when test="column=='price_spare_2' || column=='priceSpare2'">
+						price_spare_2=#{record.priceSpare2}
+					</when>
+					<when test="column=='price_spare_3' || column=='priceSpare3'">
+						price_spare_3=#{record.priceSpare3}
+					</when>
+					<when test="column=='price_spare_4' || column=='priceSpare4'">
+						price_spare_4=#{record.priceSpare4}
+					</when>
+					<when test="column=='price_spare_5' || column=='priceSpare5'">
+						price_spare_5=#{record.priceSpare5}
+					</when>
+					<when test="column=='price_spare_6' || column=='priceSpare6'">
+						price_spare_6=#{record.priceSpare6}
+					</when>
+					<when test="column=='price_spare_7' || column=='priceSpare7'">
+						price_spare_7=#{record.priceSpare7}
+					</when>
+					<when test="column=='price_spare_8' || column=='priceSpare8'">
+						price_spare_8=#{record.priceSpare8}
+					</when>
+					<when test="column=='price_spare_9' || column=='priceSpare9'">
+						price_spare_9=#{record.priceSpare9}
+					</when>
+					<when test="column=='price_spare_10' || column=='priceSpare10'">
+						price_spare_10=#{record.priceSpare10}
+					</when>
+					<when test="column=='pub_create_person' || column=='pubCreatePerson'">
+						pub_create_person=#{record.pubCreatePerson}
+					</when>
+					<when test="column=='pub_create_date' || column=='pubCreateDate'">
+						pub_create_date=#{record.pubCreateDate}
+					</when>
+					<when test="column=='pub_modi_person' || column=='pubModiPerson'">
+						pub_modi_person=#{record.pubModiPerson}
+					</when>
+					<when test="column=='pub_modi_date' || column=='pubModiDate'">
+						pub_modi_date=#{record.pubModiDate}
+					</when>
+				</choose>
+			</foreach>
+		</set>
+		where row_id = #{record.rowId}
+	</update>
+
+	<update id="update" parameterType="com.wmang.logis.mode.entity.user.ShippingDocuments">
+		update shipping_documents
+		set row_id=#{rowId},org_code=#{orgCode},bill_no=#{billNo},bill_date=#{billDate},receiver=#{receiver},
+			receiver_phone=#{receiverPhone},shipper=#{shipper},shipper_phone=#{shipperPhone},quantity=#{quantity},money=#{money},
+			freight=#{freight},total=#{total},freight_type=#{freightType},driver=#{driver},remarks=#{remarks},
+			bill_state=#{billState},receivables_state=#{receivablesState},receivables_type=#{receivablesType},receivables_date=#{receivablesDate},payment_state=#{paymentState},
+			payment_type=#{paymentType},payment_date=#{paymentDate},price_spare_1=#{priceSpare1},price_spare_2=#{priceSpare2},price_spare_3=#{priceSpare3},
+			price_spare_4=#{priceSpare4},price_spare_5=#{priceSpare5},price_spare_6=#{priceSpare6},price_spare_7=#{priceSpare7},price_spare_8=#{priceSpare8},
+			price_spare_9=#{priceSpare9},price_spare_10=#{priceSpare10},pub_create_person=#{pubCreatePerson},pub_create_date=#{pubCreateDate},pub_modi_person=#{pubModiPerson},
+			pub_modi_date=#{pubModiDate}
+		where row_id = #{rowId}
+	</update>
+	
+	<sql id="exampleClause">
+		<trim prefixOverrides="and|or">
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and|or">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									${criterion.condition}
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- 根据条件查询 -->
+	<select id="listByCondition" resultMap="baseResultMap">
+		select 
+		<include refid="baseColumnList" />
+		from shipping_documents
+		<if test="_parameter != null" >
+			<where>
+				<include refid="exampleClause" />
+			</where>
+			<if test="example.orderByClause != null and example.orderByClause != ''">
+				order by ${example.orderByClause}
+			</if>
+		</if>
+	</select>
+	
+	<!-- 根据条件查询 -->
+	<select id="countByCondition" resultType="java.lang.Integer">
+		select count(1)
+		from shipping_documents
+		<if test="_parameter != null" >
+			<where>
+				<include refid="exampleClause" />
+			</where>
+		</if>
+	</select>
+	
+	<!-- 根据主键查询自定义列 -->
+	<select id="selectColumnsByKey" resultMap="baseResultMap" parameterType="Integer">
+		select <foreach collection="columns" item="column" separator=",">#{column}</foreach>
+		from shipping_documents
+		where row_id = #{rowId}
+	</select>
+
+	<!-- ********************** 以上部分为代码自动生成，不能修改！！！ ********************************** -->
+
+</mapper>

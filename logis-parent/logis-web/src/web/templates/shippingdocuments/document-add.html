@@ -1,0 +1,206 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico">
+<link rel="Shortcut Icon" href="favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>s
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../static/plugins/h-ui.admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/layui-v2.2.5/css/layui.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script><![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>货运单编辑</title>
+</head>
+<body>
+	<form class="layui-form" action="" id="form-edit" method="post">
+		<div class="layui-form-item" style="margin-top: 30px">
+			<div class="layui-inline">
+				<label class="layui-form-label">单据号：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="billNo" lay-verify="required" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">单据日期：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="billDate" lay-verify="required|date" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">收货人：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="receiver" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">收货人电话：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="receiverPhone" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">发货人：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="shipper" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">发货人电话：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="shipperPhone" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">数量：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="quantity" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">贷款：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="money" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">运费：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="freight" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">合计：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="total" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">货运方式：</label>
+				<div class="layui-input-inline">
+					<select id="freightType">
+						<option></option>
+						<option value="代运">代运</option>
+						<option value="代收">代收</option>
+						<option value="代购">代购</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">司机：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="driver" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-form-item layui-form-text">
+			<label class="layui-form-label">备注:</label>
+			<div class="layui-input-block">
+				<input type="text" id="remarks" autocomplete="off" class="layui-input" style="width:840px">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">单据状态：</label>
+				<div class="layui-input-inline">
+					<select id="billState">
+						<option></option>
+						<option value="未收未签">未收未签</option>
+						<option value="已收已签">已收已签</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">收款状态：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="receivablesState" autocomplete="off" class="layui-input" value="未收" disabled="true">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">收款方式：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="receivablesType" autocomplete="off" class="layui-input" disabled="true">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">收款日期：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="receivablesDate" autocomplete="off" class="layui-input" disabled="true">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">付款状态：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="paymentState" autocomplete="off" class="layui-input" value="未付" disabled="true">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">付款方式：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="paymentType" autocomplete="off" class="layui-input" disabled="true">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">付款日期：</label>
+				<div class="layui-input-inline">
+					<input type="text" id="paymentDate" autocomplete="off" class="layui-input" disabled="true">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn layui-btn-normal" lay-submit
+					lay-filter="formDemo" id="saveBtn">保存</button>
+			</div>
+		</div>
+	</form>
+
+
+	<!--_footer 作为公共模版分离出去-->
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/plugins/layui-v2.2.5/layui.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/js/H-ui.admin.js"></script>
+	<!--/_footer 作为公共模版分离出去-->
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+	<script src="../../static/js/require.js" data-main="../../static/js/shippingdocuments/addDocumentMain"></script>
+	<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
