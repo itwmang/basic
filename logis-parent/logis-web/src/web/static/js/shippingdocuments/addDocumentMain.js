@@ -8,99 +8,49 @@ require.config({
 		ajax_lib:"js/modules/ajax_lib"
 	}
 });
-
+	var form;
 
 	require([ 'document_','common','ajax_lib','layuijs' ], function(document_,common,ajax_lib,layuijs) {
 		
 		
-		layui.use(['form','laydate'], function(){
-			  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-			  laydate = layui.laydate;
-				
-				//日期
-				  laydate.render({
-				    elem: '#billDate'
-				  });
-				
-			  form.render();
-		});    
 		
-		document_.addDocumentInit();
+		document_.addDocumentInit(common,ajax_lib);
 		
 		
-		$("#money").keyup(function(){
-			var a = $("#money").val();
-			var b = $("#freight").val();
-			if(!a){
-				a = 0;
+		var billNo = $("#billNo").val();
+		
+		
+		function validateForm(data){
+			if(!data.billNo){
+				layer.open({
+					  type: 0, 
+					  content:"单据号不能为空，请检查！" //这里content是一个普通的String
+					});
+				return false;
 			}
-			if(!b){
-				b = 0;
+			if(!data.billDate){
+				layer.open({
+					  type: 0, 
+					  content:"单据日期不能为空，请检查！" //这里content是一个普通的String
+					});
+				return false;
 			}
-			$("#total").val((a*1+b*1).toFixed(2));	
-		})
-		
-		$("#freight").keyup(function(){
-			var a = $("#money").val();
-			var b = $("#freight").val();
-			if(!a){
-				a = 0;
+			if(!data.receiver){
+				layer.open({
+					  type: 0, 
+					  content:" 收货人不能为空，请检查！" //这里content是一个普通的String
+					});
+				return false;
 			}
-			if(!b){
-				b = 0;
+			if(!data.shipper){
+				layer.open({
+					  type: 0, 
+					  content:"发货人不能为空，请检查！" //这里content是一个普通的String
+					});
+				return false;
 			}
-			$("#total").val((a*1+b*1).toFixed(2));	
-		})
-		
-		//修改 获取数据 加载到新增form
-		var json = {};
-		var id = common.getUrlParam("id");
-		if(id){
-			var url = common.rootPath + "/user/shippingDocuments/edit/"+id;
-			ajax_lib.asyncGet(url,null,function(res){
-				if(res){
-					json = res.content.returnObject;
-					$("#billNo").val(json.billNo);
-					$("#billDate").val(document_.getFormatDate(json.billDate));
-					$("#receiver").val(json.receiver);
-					$("#receiverPhone").val(json.receiverPhone);
-					$("#shipper").val(json.shipper);
-					$("#shipperPhone").val(json.shipperPhone);
-					$("#quantity").val(json.quantity);
-					var a = json.money;
-					if(a){
-						$("#money").val(a.toFixed(2));
-					} else{
-						$("#money").val(0)
-					}
-					var b = json.freight;
-					if(b){
-						$("#freight").val(b.toFixed(2));
-					} else{
-						$("#freight").val(0)
-					}
-					var c= json.total;
-					if(c){
-						$("#total").val(c.toFixed(2));
-					} else{
-						$("#total").val(0)
-					}
-					$("#freightType").val(json.freightType);
-					$("#driver").val(json.driver);
-					$("#remarks").val(json.remarks);
-					$("#billState").val(json.billState);
-					$("#receivablesState").val(json.receivablesState);
-					$("#receivablesType").val(json.receivablesType);
-					$("#receivablesDate").val(document_.getFormatDate(json.receivablesDate));
-					$("#paymentType").val(json.paymentType);
-					$("#paymentState").val(json.paymentState);
-					$("#paymentDate").val(document_.getFormatDate(json.paymentDate));
-				}
-			});
 		}
-		
-		//保存按钮事件
-		$("#saveBtn").on("click",function(){
+		function saveFunc(){
 			var param;
 			var url = common.rootPath + "/user/shippingDocuments/save";
 			var data = {rowId:$("#rowId").val(),
@@ -125,30 +75,40 @@ require.config({
 					paymentState:$("#paymentState").val(),
 					paymentType:$("#paymentType").val()
 			};
-
-			for(var x in json){
-				if(data[x]){
-					json[x] = data[x];
-				}
+			function formInit(){
+				window.location.reload();
 			}
 			
-			
-			if(json["rowId"]){
-				param = json;
-			} else{
-				param = data;
-			}
-			
-			ajax_lib.asyncPost(url,param,function(status){
-				if(true==status.status){
-					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-					parent.layer.close(index); //再执行关闭   
+			ajax_lib.asyncPost(url,data,function(returnData){
+				
+				if(true===returnData.status){
+//					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+//					parent.layer.close(index); //再执行关闭   
+					formInit();
 				} else {
-					alert("保存失败!");
+					layer.open({
+						type : 0,
+						content : "单据保存失败。请稍后重试！" // 这里content是一个普通的String
+					});
 				}
+			},function(){
+				
+				layer.open({
+					type : 0,
+					content : "单据保存失败。请稍后重试！" // 这里content是一个普通的String
+				});
 			})
 			
+		}
+		
+		layui.use([ 'form'],function(form){
+			form.on("submit(formSubmit)",function(data){
+				saveFunc();
+				return false;
+			});
 		});
+		
+		
 	});
 
 	

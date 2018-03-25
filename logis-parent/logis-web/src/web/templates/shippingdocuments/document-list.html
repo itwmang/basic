@@ -13,20 +13,14 @@
 <script type="text/javascript" src="lib/html5shiv.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css"
-	href="../../static/plugins/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="../../static/plugins/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
 	href="../../static/plugins/h-ui.admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css"
-	href="../../static/plugins/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css"
-	href="../../static/plugins/h-ui.admin/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="../../static/plugins/layui-v2.2.5/css/layui.css" />
-<link rel="stylesheet" type="text/css"
-	href="../../static/css/common.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../static/plugins/layui-v2.2.5/css/layui.css" />
+<link rel="stylesheet" type="text/css" href="../../static/css/common.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -35,164 +29,263 @@
 </head>
 <body>
 	<nav class="breadcrumb">
-		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		货运单管理 <span class="c-gray en">&gt;</span> 货运单管理 <a
-			class="btn btn-success radius r"
-			style="line-height: 1.6em; margin-top: 3px"
-			href="javascript:location.replace(location.href);" title="刷新"><i
-			class="Hui-iconfont">&#xe68f;</i></a>
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 货运单管理 <span class="c-gray en">&gt;</span>
+		货运单管理 <a class="btn btn-success radius r" style="line-height: 1.6em; margin-top: 3px"
+			href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
-	<div class="layui-container">
+	<!-- 	<div class="layui-container"> -->
 
-		<div class="cl pd-5 bg-1 bk-gray mt-10">
-			<span class="l"><strong>查询条件</strong></span> <span class="r">
-				<button class="layui-btn layui-btn-sm layui-btn-normal"
-					id="searchBtn">查询</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal"
-					id="resetBtn">重置</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="">导出</button>
-			</span>
-		</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-10">
+		<span class="l"><strong>查询条件</strong></span> <span class="r">
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="searchBtn">查询</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="resetBtn">重置</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="">导出</button>
+		</span>
+	</div>
 
-		<div class="layui-form" style="margin-top: 10px">
-			<div class="layui-row">
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">单据号:</label>
-						<div class="layui-input-block">
-							<input type="text" id="billNo" lay-verify="title"
-								autocomplete="off" class="input-text">
-						</div>
-					</div>
-				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">货运方式:</label>
-						<div class="layui-input-block">
-							<select id="freightType">
-								<option value=""></option>
-								<option value="代运">代运</option>
-								<option value="代收">代收</option>
-								<option value="代购">代购</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">单据日期:</label>
-						<div class="layui-input-block">
-							<input type="text"
-								onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'billDateEndStr\')||\'%y-%M-%d\'}' })"
-								id="billDateBeginStr" class="input-text Wdate">
-						</div>
-					</div>
-				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">至:</label>
-						<div class="layui-input-block">
-							<input type="text"
-								onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'billDateBeginStr\')}',maxDate:'%y-%M-%d' })"
-								id="billDateEndStr" class="input-text Wdate">
-						</div>
+	<div class="layui-form" style="margin-top: 10px">
+		<div class="layui-row">
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">单据号:</label>
+					<div class="layui-input-block">
+						<input type="text" id="billNo" lay-verify="title" autocomplete="off" class="input-text">
 					</div>
 				</div>
 			</div>
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">货运方式:</label>
+					<div class="layui-input-block">
+						<select id="freightType">
+							<option></option>
+							<option value="代运">代运</option>
+							<option value="代收">代收</option>
+							<option value="代购">代购</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">收款状态:</label>
+					<div class="layui-input-block">
+						<select id="receivablesState">
+							<option></option>
+							<option value="未收">未收</option>
+							<option value="已收">已收</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
 		</div>
-		<div class="layui-form" style="margin-top: 3px">
-			<div class="layui-row">
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">收款状态:</label>
-						<div class="layui-input-block">
-							<select id="receivablesState">
-								<option></option>
-								<option value="未收">未收</option>
-								<option value="已收">已收</option>
-							</select>
-						</div>
+
+
+
+		<div class="layui-row">
+
+
+
+
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">单据日期:</label>
+					<div class="layui-input-block">
+						<input type="text" 
+							id="billDateBeginStr" class="input-text Wdate">
 					</div>
 				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">收款类型:</label>
-						<div class="layui-input-block">
-							<select id="receivablesType">
-								<option></option>
-								<option value="现金">现金</option>
-								<option value="转账">转账</option>
-							</select>
-						</div>
+			</div>
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">至:</label>
+					<div class="layui-input-block">
+						<input type="text" id="billDateEndStr" class="input-text Wdate">
 					</div>
 				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">付款状态:</label>
-						<div class="layui-input-block">
-							<select id="paymentState">
-								<option></option>
-								<option value="未付">未付</option>
-								<option value="已付">已付</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="layui-col-md3">
-					<div class="layui-form-item">
-						<label class="layui-form-label">付款类型:</label>
-						<div class="layui-input-block">
-							<select id="paymentType">
-								<option></option>
-								<option value="现汇">现汇</option>
-								<option value="转账">转账</option>
-								<option value="自结">自结</option>
-							</select>
-						</div>
+			</div>
+
+
+
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">收款类型:</label>
+					<div class="layui-input-block">
+						<select id="receivablesType">
+							<option></option>
+							<option value="现金">现金</option>
+							<option value="转账">转账</option>
+						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="cl pd-5 bg-1 bk-gray mt-10">
-			<span class="l"><strong>货运单据列表</strong></span> <span class="r">
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="addBtn">新增</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="editBtn">修改</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="delBtn">删除</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="billBtn">对单</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="recBtn">收款</button>
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="payBtn">付款</button>
-			</span>
+		<div class="layui-row">
+
+
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">付款状态:</label>
+					<div class="layui-input-block">
+						<select id="paymentState">
+							<option></option>
+							<option value="未付">未付</option>
+							<option value="已付">已付</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">付款类型:</label>
+					<div class="layui-input-block">
+						<select id="paymentType">
+							<option></option>
+							<option value="现汇">现汇</option>
+							<option value="转账">转账</option>
+							<option value="自结">自结</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<label class="layui-form-label">客户:</label>
+					<div class="layui-input-block">
+						<input type="text" id="queryCustomer" lay-verify="title" autocomplete="off" class="input-text" placeholder="搜索收货人或者发货人"/>
+					</div>
+				</div>
+			</div>
+			
+			
+			
 		</div>
-		<div id="document-table"></div>
+	</div>
 
 	</div>
 
-	<script>
-		
-	</script>
+	<!-- 	<form class="layui-form" action="" id="form-edit" method="post"> -->
+	<!-- 		<div class="layui-form-item" style="margin-top: 30px"> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">单据号：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<input type="text" id="billNo" lay-verify="required" -->
+	<!-- 						autocomplete="off" class="layui-input"> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">货运方式：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<select id="freightType"> -->
+	<!-- 						<option></option> -->
+	<!-- 						<option value="代运">代运</option> -->
+	<!-- 						<option value="代收">代收</option> -->
+	<!-- 						<option value="代购">代购</option> -->
+	<!-- 					</select> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">客户查询：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<input type="text" id="customer" autocomplete="off" -->
+	<!-- 						class="layui-input"> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+
+	<!-- 		<div class="layui-form-item"> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">单据日期:</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<input type="text" id="billDateBeginStr" autocomplete="off" -->
+	<!-- 						class="layui-input"> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">至：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<input type="text" id="billDateEndStr" autocomplete="off" -->
+	<!-- 						class="layui-input"> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">收款状态：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<select id="receivablesState"> -->
+	<!-- 						<option></option> -->
+	<!-- 						<option value="未收">未收</option> -->
+	<!-- 						<option value="已收">已收</option> -->
+	<!-- 					</select> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+
+	<!-- 		<div class="layui-form-item"> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">收款类型：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<select id="receivablesType"> -->
+	<!-- 						<option></option> -->
+	<!-- 						<option value="现金">现金</option> -->
+	<!-- 						<option value="转账">转账</option> -->
+	<!-- 					</select> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">付款状态：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<select id="paymentState"> -->
+	<!-- 						<option></option> -->
+	<!-- 						<option value="未付">未付</option> -->
+	<!-- 						<option value="已付">已付</option> -->
+	<!-- 					</select> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="layui-inline"> -->
+	<!-- 				<label class="layui-form-label">付款类型：</label> -->
+	<!-- 				<div class="layui-input-inline"> -->
+	<!-- 					<select id="paymentType"> -->
+	<!-- 						<option></option> -->
+	<!-- 						<option value="现汇">现汇</option> -->
+	<!-- 						<option value="转账">转账</option> -->
+	<!-- 						<option value="自结">自结</option> -->
+	<!-- 					</select> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</form> -->
+
+	<div class="cl pd-5 bg-1 bk-gray mt-10">
+		<span class="l"><strong>货运单据列表</strong></span> <span class="r">
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="addBtn">新增</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="editBtn">修改</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="delBtn">删除</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="billBtn">对单</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="recBtn">收款</button>
+			<button class="layui-btn layui-btn-sm layui-btn-normal" id="payBtn">付款</button>
+		</span>
+	</div>
+	<div id="document-table"></div>
+
+	<!-- 	</div> -->
 
 	<!--_footer 作为公共模版分离出去-->
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui.admin/lib/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui.admin/lib/layer/2.4/layer.js"></script>
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui/js/H-ui.min.js"></script>
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui.admin/js/H-ui.admin.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/js/H-ui.admin.js"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui.admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<script type="text/javascript"
 		src="../../static/plugins/h-ui.admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-	<script type="text/javascript"
-		src="../../static/plugins/h-ui.admin/lib/laypage/1.2/laypage.js"></script>
-	<script type="text/javascript"
-		src="../../static/plugins/layui-v2.2.5/layui.js"></script>
-	<script src="../../static/js/require.js"
-		data-main="../../static/js/shippingdocuments/documentMain"></script>
+	<script type="text/javascript" src="../../static/plugins/h-ui.admin/lib/laypage/1.2/laypage.js"></script>
+	<script type="text/javascript" src="../../static/plugins/layui-v2.2.5/layui.js"></script>
+	<script src="../../static/js/require.js" data-main="../../static/js/shippingdocuments/documentMain"></script>
 </body>
 </html>

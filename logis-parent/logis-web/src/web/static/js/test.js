@@ -13,7 +13,7 @@ $(function(){
 	$("#exitbtn").click(function(){
 		
 		require([ "test" ], function(index) {
-			debugger;
+			
 			index.init();
 		})
 	});

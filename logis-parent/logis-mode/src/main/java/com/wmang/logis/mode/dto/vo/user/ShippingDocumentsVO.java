@@ -120,6 +120,15 @@ public class ShippingDocumentsVO implements Serializable {
 	/** 最后修改时间结束 **/
 	private String pubModiDateEndStr;
 	
+	private String queryCustomer;
+	
+	
+	public String getQueryCustomer() {
+		return queryCustomer;
+	}
+	public void setQueryCustomer(String queryCustomer) {
+		this.queryCustomer = queryCustomer;
+	}
 	/** 单据ID */
 	public Integer getRowId() {
 		return rowId;

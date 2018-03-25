@@ -12,7 +12,7 @@ require.config({
 require([ 'common','ajax_lib','base64'],function(common , ajax , base64 ){
 		$("#loginbtn").click(function() {
 			var b = validateLogin();
-			debugger;
+			
 			
 			if(!!b){
 				window.location.href = "index.html";
@@ -41,7 +41,7 @@ require([ 'common','ajax_lib','base64'],function(common , ajax , base64 ){
 			var data={account:base64.encode(useraccount),passwd:base64.encode(userpasswd)};
 			var b = false;
 			ajax.postParam(url,data,function(res){
-				debugger;
+				
 				if(res.content){
 					b = true;
 				}else{

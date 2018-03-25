@@ -27,4 +27,8 @@ public interface ShippingDocumentsBiz extends BaseMgrBiz<ShippingDocumentsVO,Int
 	BaseResponse<ShippingDocumentsVO> doPayment(List<Integer> listId, String paymentType, Date paymentDate_,
 			String paymentState) throws Exception;
 
+	BaseResponse<ShippingDocumentsVO> saveOrUpdate(ShippingDocumentsVO vo) throws Exception;
+
+	Integer getBillNo();
+
 }

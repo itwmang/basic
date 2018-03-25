@@ -25,13 +25,21 @@ require.config({
 			var billState = $("#billState_").val();
 			var url = common.rootPath + "/user/shippingDocuments/doBillCheck";
 			var param = {ids:ids,billState:billState};
-			ajax_lib.asyncPostParam(url,param,function(res){
-				if(true==res.status){
+			ajax_lib.asyncPostParam(url,param,function(returnData){
+				if(true==returnData.status){
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭   
 				} else {
-					alert("对单失败!");
+					layer.open({
+						  type: 0, 
+						  content:"对单失败!" //这里content是一个普通的String
+						});
 				}
+			},function(e){
+				layer.open({
+					  type: 0, 
+					  content:"对单失败!" //这里content是一个普通的String
+					});
 			});
 			
 		});

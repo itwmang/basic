@@ -14,6 +14,20 @@ require([ 'document_', 'common', 'ajax_lib', 'layuijs' ], function(document_,
 
 	document_.documentinit();
 	
+	layui.use(['form','laydate'], function(){
+		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+		  laydate = layui.laydate;
+			
+			//日期
+			  laydate.render({
+			    elem: '#billDateBeginStr'
+			  });
+			  laydate.render({
+				elem: '#billDateEndStr'
+			  });
+		  form.render();
+	}); 
+	
 	
 	//查询按钮事件
 	$("#searchBtn").click(function() {

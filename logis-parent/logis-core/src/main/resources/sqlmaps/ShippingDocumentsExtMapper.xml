@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wmang.logis.core.dao.user.ShippingDocumentsExtMapper">
-	
+
+
+	<select id="checkNo"
+		resultMap="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseResultMap"
+		parameterType="Integer">
+		select
+		<include
+			refid="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseColumnList" />
+		from shipping_documents
+		where bill_no = #{billNo}
+	</select>
+
+	<select id="checkNo_"
+		resultMap="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseResultMap"
+		parameterType="Integer">
+		select
+		<include
+			refid="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseColumnList" />
+		from shipping_documents
+		where bill_no = #{billNo} and row_id = #{rowId}
+	</select>
+
+	<sql id="whereExample">
+		<if test="map.orgCode != null">
+			and org_code = #{map.orgCode}
+		</if>
+		<if test="map.bill_no != null">
+			and bill_no like  #{map.bill_no} '%'
+		</if>
+		<if test="map.freight_type != null">
+			and freight_type = #{map.freight_type}
+		</if>
+		<if test="map.receivables_state != null">
+			and receivables_state = #{map.receivables_state}
+		</if>
+		<if test="map.receivables_type != null">
+			and receivables_type = #{map.receivables_type}
+		</if>
+		<if test="map.payment_state != null">
+			and payment_state = #{map.payment_state}
+		</if>
+		<if test="map.payment_type != null">
+			and payment_type = #{map.payment_type}
+		</if>
+		<if test="map.payment_state != null">
+			and payment_state = #{map.payment_state}
+		</if>
+		<if test="map.receiver != null and map.shipper != null">
+			and (receiver like #{map.receiver} or shipper
+			like #{map.shipper})
+		</if>
+		<if test="map.billDateBeginStr != null">
+			and (bill_date &gt;=
+			str_to_date(#{map.billDateBeginStr},'%Y-%m-%d %H:%i:%S') and
+			bill_date &lt;= str_to_date(#{map.billDateEndStr},'%Y-%m-%d
+			%H:%i:%S'))
+		</if>
+	</sql>
+	<!-- 根据条件查询 -->
+	<select id="listByMap"
+		resultMap="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseResultMap">
+		select
+		<include
+			refid="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseColumnList" />
+		from shipping_documents
+		<if test="map != null">
+			<where>
+				1=1
+				<include refid="whereExample" />
+			</where>
+		</if>
+	</select>
+	<!-- 根据条件查询 -->
+	<select id="listByMapCount" resultType="java.lang.Integer">
+		select
+		count(1)
+		from shipping_documents
+		<if test="map != null">
+			<where>
+				1=1
+				<include refid="whereExample" />
+			</where>
+		</if>
+	</select>
+	<!-- 根据条件查询 -->
+	<select id="getMaxBillNo" resultType="java.lang.Integer">
+		select
+		max(bill_no)
+		from shipping_documents
+	</select>
+
 </mapper>

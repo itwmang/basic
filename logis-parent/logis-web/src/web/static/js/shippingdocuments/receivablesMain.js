@@ -18,7 +18,8 @@ require([ 'document_', 'common', 'ajax_lib' ], function(document_, common,
 
 		//日期
 		laydate.render({
-			elem : '#receivablesDate_'
+			elem : '#receivablesDate_',
+			value:new Date()
 		});
 
 		form.render();
@@ -39,8 +40,8 @@ require([ 'document_', 'common', 'ajax_lib' ], function(document_, common,
 			receivablesDate : receivablesDate,
 			receivablesState : receivablesState
 		};
-		ajax_lib.asyncPostParam(url, param, function(res) {
-			if (true == res.status) {
+		ajax_lib.asyncPostParam(url, param, function(returnData) {
+			if (true == returnData.status) {
 				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 				parent.layer.close(index); //再执行关闭   
 			} else {

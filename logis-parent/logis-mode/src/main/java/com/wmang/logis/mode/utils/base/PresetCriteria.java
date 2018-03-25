@@ -14,6 +14,11 @@ public class PresetCriteria extends Criteria implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -2871812979417212307L;
+	
+	private static String mysqlDateFunc = "str_to_date";
+	private static String mysqlDateFormat = "%Y-%m-%d %H:%i:%S";
+	
+	
 	protected CommonExample example;
 	public PresetCriteria(CommonExample example){
 		this.example=example;
@@ -177,14 +182,14 @@ public class PresetCriteria extends Criteria implements Serializable{
 		*/
 		if (!valueIsempty(begindate) && valueIsempty(enddate)) {
 			String placeHolder=this.getPlaceHolder(CommonExample.D, begindate);
-			sql=" "+andor+" "+columnName+">= str_to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+">= "+mysqlDateFunc+"("+placeHolder+",'"+mysqlDateFormat+"') ";
 		} else if (valueIsempty(begindate) && !valueIsempty(enddate)) {
 			String placeHolder=this.getPlaceHolder(CommonExample.D, enddate);
-			sql=" "+andor+" "+columnName+"<= str_to_date("+placeHolder+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+"<= "+mysqlDateFunc+"("+placeHolder+",'"+mysqlDateFormat+"') ";
 		} else if (!valueIsempty(begindate) && !valueIsempty(enddate)) {
 			String placeHolder1=this.getPlaceHolder(CommonExample.D, begindate);
 			String placeHolder2=this.getPlaceHolder(CommonExample.D, enddate);
-			sql=" "+andor+" "+columnName+" >= str_to_date("+placeHolder1+",'yyyy-mm-dd hh24:mi:ss') and "+columnName+" <= str_to_date("+placeHolder2+",'yyyy-mm-dd hh24:mi:ss') ";
+			sql=" "+andor+" "+columnName+" >= "+mysqlDateFunc+"("+placeHolder1+",'"+mysqlDateFormat+"') and "+columnName+" <= "+mysqlDateFunc+"("+placeHolder2+",'"+mysqlDateFormat+"') ";
 		}
 		if(sql!=null){
 			addCriterion(sql);

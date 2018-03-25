@@ -89,7 +89,7 @@ define([ 'jquery' ], function($) {
 			data:param,
 			url:url,
 			dataType:'json',
-			async:true,
+			async:false,
 			success:callback,
 			error:errorFn
 		});
@@ -100,7 +100,7 @@ define([ 'jquery' ], function($) {
 			data:param,
 			url:url,
 			dataType:'json',
-			async:true,
+			async:false,
 			success:callback,
 			error:errorFn
 		});

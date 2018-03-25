@@ -18,7 +18,8 @@ require.config({
 			
 			//日期
 			  laydate.render({
-			    elem: '#paymentDate_'
+			    elem: '#paymentDate_',
+			    value:new Date()
 			  });
 			
 			form.render();
@@ -28,7 +29,7 @@ require.config({
 		//获取选中id组成的字符串
 		var ids = common.getUrlParam("ids");
 
-		//对单按钮更新单据信息
+		//收款按钮更新单据信息
 		$("#payBtn_").click(function() {
 			var paymentType = $("#paymentType_").val();
 			var paymentDate = $("#paymentDate_").val();
@@ -40,8 +41,9 @@ require.config({
 				paymentDate : paymentDate,
 				paymentState : paymentState
 			};
-			ajax_lib.asyncPostParam(url, param, function(res) {
-				if (true == res.status) {
+			ajax_lib.asyncPostParam(url, param, function(returnData) {
+				
+				if (true == returnData.status) {
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭   
 				} else {

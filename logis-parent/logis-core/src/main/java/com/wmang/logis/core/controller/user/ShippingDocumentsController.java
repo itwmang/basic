@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wmang.logis.core.controller.BaseController;
-import com.wmang.logis.mode.dto.request.billCheck;
-import com.wmang.logis.mode.dto.vo.user.ShippingDocumentsVO;
 import com.wmang.logis.core.biz.user.ShippingDocumentsBiz;
-import com.wmang.logis.mode.utils.base.BasePageResponse;
-import com.wmang.logis.mode.utils.base.BaseResponse;
-import com.wmang.logis.mode.utils.base.BodyData;
+import com.wmang.logis.core.controller.BaseController;
+import com.wmang.logis.mode.dto.vo.user.ShippingDocumentsVO;
 import com.wmang.logis.mode.utils.FastJSONHelper;
 import com.wmang.logis.mode.utils.ListCarrier;
 import com.wmang.logis.mode.utils.ValueUtil;
+import com.wmang.logis.mode.utils.base.BasePageResponse;
+import com.wmang.logis.mode.utils.base.BaseResponse;
+import com.wmang.logis.mode.utils.base.BodyData;
 
 /**
  * Title: 货运单据 Description: 货运单据Controller类
@@ -59,19 +59,7 @@ public class ShippingDocumentsController extends BaseController {
 	@RequestMapping(value = "/user/shippingDocuments/save", method = RequestMethod.POST)
 	@ResponseBody
 	public BodyData save(@RequestBody ShippingDocumentsVO vo) throws Exception {
-		BaseResponse<ShippingDocumentsVO> response = new BaseResponse<ShippingDocumentsVO>();
-		if (vo.getRowId() != null) {
-			vo.setPubModiPerson("wx1");
-			vo.setPubModiDate(new Date());
-			response = shippingDocumentsBiz.update(vo, "");
-		} else {
-			vo.setOrgCode("1");
-			vo.setPubCreatePerson("wx");
-			vo.setPubCreateDate(new Date());
-			vo.setPubModiPerson("wx");
-			vo.setPubModiDate(new Date());
-			response = shippingDocumentsBiz.save(vo, "");
-		}
+		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.saveOrUpdate(vo);
 		return super.success(response);
 	}
 
@@ -144,6 +132,7 @@ public class ShippingDocumentsController extends BaseController {
 		}.carryList(Arrays.asList(ids.split(",")));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date receivablesDate_ = sdf.parse(receivablesDate);
+
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doReceivables(listId, receivablesType,
 				receivablesDate_, receivablesState);
 		return super.success(response);
@@ -164,9 +153,17 @@ public class ShippingDocumentsController extends BaseController {
 		}.carryList(Arrays.asList(ids.split(",")));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date paymentDate_ = sdf.parse(paymentDate);
+//		paymentType = new String(paymentType.getBytes("iso-8859-1"),"utf-8");
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doPayment(listId, paymentType,
 				paymentDate_, paymentState);
 		return super.success(response);
+	}
+	/** 获取最新单据编码 */
+	@RequestMapping(value = "/user/shippingDocuments/getBillNo", method = RequestMethod.GET)
+	@ResponseBody
+	public BodyData getBillNo() throws Exception {
+		Integer billNo = shippingDocumentsBiz.getBillNo();
+		return super.success(billNo);
 	}
 	
 }
