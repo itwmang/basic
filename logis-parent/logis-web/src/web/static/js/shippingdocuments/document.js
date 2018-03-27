@@ -9,13 +9,11 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 		// 初始化单据号
 		var url = common.rootPath + "/user/shippingDocuments/getBillNo";
 		ajax_lib.asyncGet(url, null, function(res) {
-			if (!res.content) {
-				layer.open({
-					type : 0,
-					content : "单据号生成失败。请稍后重试！" // 这里content是一个普通的String
-				});
+			if (!res) {
+				layer.msg("单据号生成失败。请稍后重试！");
+				return false;
 			}
-			$("#billNo").val(res.content);
+			$("#billNo").val(res);
 
 		});
 	}
@@ -68,9 +66,10 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 			var url = common.rootPath + "/user/shippingDocuments/edit/" + id;
 			ajax_lib.asyncGet(url, null, function(res) {
 				if (res) {
-					json = res.content.returnObject;
+					json = res.returnObject;
+					$("#rowId").val(json.rowId);
 					$("#billNo").val(json.billNo);
-					$("#billDate").val(document_.getFormatDate(json.billDate));
+					$("#billDate").val(getFormatDate(json.billDate));
 					$("#receiver").val(json.receiver);
 					$("#receiverPhone").val(json.receiverPhone);
 					$("#shipper").val(json.shipper);
@@ -98,15 +97,15 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 					$("#driver").val(json.driver);
 					$("#remarks").val(json.remarks);
 					$("#billState")
-							.val(document_.getFormatDate(json.billState));
+							.val(getFormatDate(json.billState));
 					$("#receivablesState").val(json.receivablesState);
 					$("#receivablesType").val(json.receivablesType);
 					$("#receivablesDate").val(
-							document_.getFormatDate(json.receivablesDate));
+							getFormatDate(json.receivablesDate));
 					$("#paymentType").val(json.paymentType);
 					$("#paymentState").val(json.paymentState);
 					$("#paymentDate").val(
-							document_.getFormatDate(json.paymentDate));
+							getFormatDate(json.paymentDate));
 				}
 			});
 		} else {
@@ -151,7 +150,7 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 			};
 			tableObj = table.render({
 				elem : '#document-table',
-				height : 'full-300', // 高度最大化减去差值
+				height : 'full-245', // 高度最大化减去差值
 				url : rootPath + '/user/shippingDocuments/listdocument',
 				method : "get",
 				request : {
@@ -304,17 +303,7 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 			});
 		});
 
-		// 绑定按钮
-		$("#addBtn").on(
-				"click",
-				function() {
-					common.layerWinOpen('货运单新增', 'document-add.html', '1000',
-							'550', null, function() {
-								layui.use('table', function() {
-									queryFunc();
-								});
-							});
-				});
+	
 
 	};
 

@@ -22,31 +22,19 @@ require.config({
 		
 		function validateForm(data){
 			if(!data.billNo){
-				layer.open({
-					  type: 0, 
-					  content:"单据号不能为空，请检查！" //这里content是一个普通的String
-					});
+				layer.msg("单据号不能为空，请检查！");
 				return false;
 			}
 			if(!data.billDate){
-				layer.open({
-					  type: 0, 
-					  content:"单据日期不能为空，请检查！" //这里content是一个普通的String
-					});
+				layer.msg("单据日期不能为空，请检查！");
 				return false;
 			}
 			if(!data.receiver){
-				layer.open({
-					  type: 0, 
-					  content:" 收货人不能为空，请检查！" //这里content是一个普通的String
-					});
+				layer.msg(" 收货人不能为空，请检查！");
 				return false;
 			}
 			if(!data.shipper){
-				layer.open({
-					  type: 0, 
-					  content:"发货人不能为空，请检查！" //这里content是一个普通的String
-					});
+				layer.msg("发货人不能为空，请检查！");
 				return false;
 			}
 		}
@@ -78,7 +66,6 @@ require.config({
 			function formInit(){
 				window.location.reload();
 			}
-			
 			ajax_lib.asyncPost(url,data,function(returnData){
 				
 				if(true===returnData.status){
@@ -86,17 +73,10 @@ require.config({
 //					parent.layer.close(index); //再执行关闭   
 					formInit();
 				} else {
-					layer.open({
-						type : 0,
-						content : "单据保存失败。请稍后重试！" // 这里content是一个普通的String
-					});
+					layer.msg("单据保存失败。请稍后重试！");
 				}
 			},function(){
-				
-				layer.open({
-					type : 0,
-					content : "单据保存失败。请稍后重试！" // 这里content是一个普通的String
-				});
+				layer.msg("单据保存失败。请稍后重试！");
 			})
 			
 		}

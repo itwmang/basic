@@ -20,7 +20,7 @@
 		<include
 			refid="com.wmang.logis.core.dao.user.ShippingDocumentsMapper.baseColumnList" />
 		from shipping_documents
-		where bill_no = #{billNo} and row_id = #{rowId}
+		where bill_no = #{billNo} and row_id != #{rowId}
 	</select>
 
 	<sql id="whereExample">

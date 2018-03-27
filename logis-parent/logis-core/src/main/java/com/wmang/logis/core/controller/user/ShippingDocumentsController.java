@@ -59,7 +59,7 @@ public class ShippingDocumentsController extends BaseController {
 	@RequestMapping(value = "/user/shippingDocuments/save", method = RequestMethod.POST)
 	@ResponseBody
 	public BodyData save(@RequestBody ShippingDocumentsVO vo) throws Exception {
-		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.saveOrUpdate(vo);
+		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.saveOrUpdate(vo,getAccount());
 		return super.success(response);
 	}
 
@@ -67,6 +67,7 @@ public class ShippingDocumentsController extends BaseController {
 	@RequestMapping(value = "/user/shippingDocuments/edit/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public BodyData toupdate(@PathVariable("id") Integer id) throws Exception {
+		getAccount();
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.findOne(id);
 		return super.success(response);
 	}
@@ -74,6 +75,7 @@ public class ShippingDocumentsController extends BaseController {
 	/** 查看_打开界面 */
 	@RequestMapping(value = "/user/shippingDocuments/view/{id}", method = RequestMethod.GET)
 	public String toview(@PathVariable("id") Integer id, Model model) throws Exception {
+		getAccount();
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.findOne(id);
 		model.addAttribute("modelFromServer", FastJSONHelper.serialize(response.getReturnObject()));
 		model.addAttribute("operate", "view");
@@ -84,7 +86,7 @@ public class ShippingDocumentsController extends BaseController {
 	@RequestMapping(value = "/user/shippingDocuments/update", method = RequestMethod.POST)
 	@ResponseBody
 	public BodyData update(@RequestBody ShippingDocumentsVO vo) throws Exception {
-		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.update(vo, "");
+		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.update(vo,getAccount());
 		return super.success(response);
 	}
 
@@ -98,7 +100,7 @@ public class ShippingDocumentsController extends BaseController {
 				return ValueUtil.toInt(source);
 			}
 		}.carryList(Arrays.asList(ids.split(",")));
-		BaseResponse<List<Integer>> response = shippingDocumentsBiz.delete(listId, "");
+		BaseResponse<List<Integer>> response = shippingDocumentsBiz.delete(listId,getAccount());
 		return super.success(response);
 	}
 
@@ -113,7 +115,7 @@ public class ShippingDocumentsController extends BaseController {
 				return ValueUtil.toInt(source);
 			}
 		}.carryList(Arrays.asList(ids.split(",")));
-		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doBillCheck(listId, billState);
+		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doBillCheck(listId, billState,getAccount());
 		return super.success(response);
 	}
 
@@ -134,7 +136,7 @@ public class ShippingDocumentsController extends BaseController {
 		Date receivablesDate_ = sdf.parse(receivablesDate);
 
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doReceivables(listId, receivablesType,
-				receivablesDate_, receivablesState);
+				receivablesDate_, receivablesState,getAccount());
 		return super.success(response);
 	}
 	
@@ -155,13 +157,14 @@ public class ShippingDocumentsController extends BaseController {
 		Date paymentDate_ = sdf.parse(paymentDate);
 //		paymentType = new String(paymentType.getBytes("iso-8859-1"),"utf-8");
 		BaseResponse<ShippingDocumentsVO> response = shippingDocumentsBiz.doPayment(listId, paymentType,
-				paymentDate_, paymentState);
+				paymentDate_, paymentState,getAccount());
 		return super.success(response);
 	}
 	/** 获取最新单据编码 */
 	@RequestMapping(value = "/user/shippingDocuments/getBillNo", method = RequestMethod.GET)
 	@ResponseBody
 	public BodyData getBillNo() throws Exception {
+		getAccount();
 		Integer billNo = shippingDocumentsBiz.getBillNo();
 		return super.success(billNo);
 	}

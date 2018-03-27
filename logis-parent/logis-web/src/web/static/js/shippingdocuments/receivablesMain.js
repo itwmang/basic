@@ -42,10 +42,11 @@ require([ 'document_', 'common', 'ajax_lib' ], function(document_, common,
 		};
 		ajax_lib.asyncPostParam(url, param, function(returnData) {
 			if (true == returnData.status) {
+				layer.msg("收款成功！");
 				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 				parent.layer.close(index); //再执行关闭   
 			} else {
-				alert("收款失败!");
+				layer.msg("收款失败！");
 			}
 		});
 

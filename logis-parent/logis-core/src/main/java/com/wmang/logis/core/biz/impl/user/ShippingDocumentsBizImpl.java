@@ -145,7 +145,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 
 	// 对单方法
 	@Override
-	public BaseResponse<ShippingDocumentsVO> doBillCheck(List<Integer> listId, String billState) throws Exception {
+	public BaseResponse<ShippingDocumentsVO> doBillCheck(List<Integer> listId, String billState, String account) throws Exception {
 		BaseResponse<ShippingDocumentsVO> res = new BaseResponse<ShippingDocumentsVO>();
 		List<String> bill = new ArrayList<String>();
 		bill.add("billState");
@@ -155,7 +155,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 			ShippingDocuments vo = new ShippingDocuments();
 			vo.setRowId(id);
 			vo.setBillState(billState);
-			vo.setPubModiPerson("wx");
+			vo.setPubModiPerson(account);
 			vo.setPubModiDate(new Date());
 			shippingDocumentsService.updateSelected(vo, bill);
 		}
@@ -165,7 +165,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 	// 收款方法
 	@Override
 	public BaseResponse<ShippingDocumentsVO> doReceivables(List<Integer> listId, String receivablesType,
-			Date receivablesDate, String receivablesState) throws Exception {
+			Date receivablesDate, String receivablesState, String account) throws Exception {
 		BaseResponse<ShippingDocumentsVO> res = new BaseResponse<ShippingDocumentsVO>();
 		List<String> rec = new ArrayList<String>();
 		rec.add("receivablesType");
@@ -179,7 +179,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 			vo.setReceivablesState(receivablesState);
 			vo.setReceivablesDate(receivablesDate);
 			vo.setReceivablesType(receivablesType);
-			vo.setPubModiPerson("wx");
+			vo.setPubModiPerson(account);
 			vo.setPubModiDate(new Date());
 			shippingDocumentsService.updateSelected(vo, rec);
 		}
@@ -189,7 +189,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 	// 付款方法
 	@Override
 	public BaseResponse<ShippingDocumentsVO> doPayment(List<Integer> listId, String paymentType, Date paymentDate_,
-			String paymentState) throws Exception {
+			String paymentState, String account) throws Exception {
 		BaseResponse<ShippingDocumentsVO> res = new BaseResponse<ShippingDocumentsVO>();
 		List<String> pay = new ArrayList<String>();
 		pay.add("paymentType");
@@ -203,7 +203,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 			vo.setPaymentDate(paymentDate_);
 			vo.setPaymentState(paymentState);
 			vo.setPaymentType(paymentType);
-			vo.setPubModiPerson("wx");
+			vo.setPubModiPerson(account);
 			vo.setPubModiDate(new Date());
 			shippingDocumentsService.updateSelected(vo, pay);
 		}
@@ -211,32 +211,37 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 	}
 
 	@Override
-	public BaseResponse<ShippingDocumentsVO> saveOrUpdate(ShippingDocumentsVO vo) throws Exception {
+	public BaseResponse<ShippingDocumentsVO> saveOrUpdate(ShippingDocumentsVO vo,String account) throws Exception {
 		BaseResponse<ShippingDocumentsVO> res = new BaseResponse<ShippingDocumentsVO>();
 		List<ShippingDocuments> repeat = new ArrayList<>();
 		Integer rowId = vo.getRowId();
 		Integer billNo = vo.getBillNo();
 
 		try {
-			if (vo.getRowId() != null) {
-				repeat = shippingDocumentsService.checkNo(billNo);
-			} else {
+			if (vo.getRowId() != null && vo.getRowId()!=0) {
 				repeat = shippingDocumentsService.checkNo_(billNo, rowId);
+			} else {
+				repeat = shippingDocumentsService.checkNo(billNo);
 			}
 
 			if (!CollectionUtils.isEmpty(repeat)) {
-				throw new BaseException("报错信息", "单据号重复");
+				throw new BaseException("单据号重复,请检查！");
 			}
 
-			if (vo.getRowId() != null) {
-				vo.setPubModiPerson("wx1");
+			if (vo.getRowId() != null && vo.getRowId()!=0) {
+				ShippingDocuments sd = shippingDocumentsService.findOne(vo.getRowId());
+				vo.setOrgCode(sd.getOrgCode());
+				vo.setPubCreateDate(sd.getPubCreateDate());
+				vo.setPubCreatePerson(sd.getPubCreatePerson());
+				vo.setOrgCode(sd.getOrgCode());
+				vo.setPubModiPerson(account);
 				vo.setPubModiDate(new Date());
 				res = super.update(vo, "");
 			} else {
 				vo.setOrgCode("1");
-				vo.setPubCreatePerson("wx");
+				vo.setPubCreatePerson(account);
 				vo.setPubCreateDate(new Date());
-				vo.setPubModiPerson("wx");
+				vo.setPubModiPerson(account);
 				vo.setPubModiDate(new Date());
 				res = super.save(vo, "");
 			}

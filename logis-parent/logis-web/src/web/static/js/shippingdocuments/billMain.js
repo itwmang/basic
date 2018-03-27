@@ -27,19 +27,14 @@ require.config({
 			var param = {ids:ids,billState:billState};
 			ajax_lib.asyncPostParam(url,param,function(returnData){
 				if(true==returnData.status){
+					layer.msg("付款成功！");
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 					parent.layer.close(index); //再执行关闭   
 				} else {
-					layer.open({
-						  type: 0, 
-						  content:"对单失败!" //这里content是一个普通的String
-						});
+					layer.msg("对单失败！");
 				}
 			},function(e){
-				layer.open({
-					  type: 0, 
-					  content:"对单失败!" //这里content是一个普通的String
-					});
+				layer.msg("对单失败！");
 			});
 			
 		});

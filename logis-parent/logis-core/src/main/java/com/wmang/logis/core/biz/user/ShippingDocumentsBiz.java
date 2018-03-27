@@ -19,15 +19,15 @@ public interface ShippingDocumentsBiz extends BaseMgrBiz<ShippingDocumentsVO,Int
 
 	BasePageResponse findAllUser(ShippingDocumentsVO vo, int pageIndex, int pageSize);
 
-	BaseResponse<ShippingDocumentsVO> doBillCheck(List<Integer> listId, String billState) throws Exception;
+	BaseResponse<ShippingDocumentsVO> doBillCheck(List<Integer> listId, String billState, String account) throws Exception;
 
 	BaseResponse<ShippingDocumentsVO> doReceivables(List<Integer> listId, String receivablesType, Date receivablesDate,
-			String receivablesState) throws Exception;
+			String receivablesState, String account) throws Exception;
 
 	BaseResponse<ShippingDocumentsVO> doPayment(List<Integer> listId, String paymentType, Date paymentDate_,
-			String paymentState) throws Exception;
+			String paymentState, String account) throws Exception;
 
-	BaseResponse<ShippingDocumentsVO> saveOrUpdate(ShippingDocumentsVO vo) throws Exception;
+	BaseResponse<ShippingDocumentsVO> saveOrUpdate(ShippingDocumentsVO vo,String account) throws Exception;
 
 	Integer getBillNo();
 

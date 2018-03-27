@@ -16,6 +16,24 @@ define([ 'jquery' ], function($) {
 		return projectName;
 	}
 	
+	//异常
+	function exceptionHandle(res){
+		debugger;
+		layui.use([ 'layer' ], function(layer) {
+			if(res.error){
+				if(res.error.errorCode == "999999"){
+					layer.msg(res.error.errMsg);
+					setTimeout(function(){
+						window.top.location.href = getRootPath()+"/templates/login.html";
+					},800);
+					return false;
+				}
+				var layer = layui.layer; // 只有执行了这一步，部分表单元素才会自动修饰成功
+				layer.msg(res.error.errorCode); // 这里content是一个普通的String
+			}
+		});
+	}
+	
 	var postParam = function(url,param,callback,errorFn) {
 		$.ajax({
 			type:"post",
@@ -23,7 +41,14 @@ define([ 'jquery' ], function($) {
 			url:url,
 			dataType:'json',
 			async:false,
-			success:callback,
+			success:function(res){
+				debugger;
+				if(res.status == true){
+					callback(res.content||null);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -34,7 +59,13 @@ define([ 'jquery' ], function($) {
 			url:url,
 			dataType:'json',
 			async:false,
-			success:callback,
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -46,7 +77,14 @@ define([ 'jquery' ], function($) {
 			url:url,
 			contentType:"application/json",
 			async:false,
-			success:callback,
+			dataType:'json',
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -57,7 +95,14 @@ define([ 'jquery' ], function($) {
 			url:url,
 			contentType:"application/json",
 			async:false,
-			success:callback,
+			dataType:'json',
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -68,7 +113,14 @@ define([ 'jquery' ], function($) {
 			url:url,
 			contentType:"application/json",
 			async:true,
-			success:callback,
+			dataType:'json',
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -79,7 +131,14 @@ define([ 'jquery' ], function($) {
 			url:url,
 			contentType:"application/json",
 			async:true,
-			success:callback,
+			dataType:"json",
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -90,7 +149,13 @@ define([ 'jquery' ], function($) {
 			url:url,
 			dataType:'json',
 			async:false,
-			success:callback,
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
@@ -101,7 +166,13 @@ define([ 'jquery' ], function($) {
 			url:url,
 			dataType:'json',
 			async:false,
-			success:callback,
+			success:function(res){
+				if(!!res.content&&res.status == true){
+					callback(res.content);
+				}else{
+					exceptionHandle(res);
+				}
+			},
 			error:errorFn
 		});
 	};
