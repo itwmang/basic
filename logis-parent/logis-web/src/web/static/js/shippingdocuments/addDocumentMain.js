@@ -49,6 +49,7 @@ require.config({
 					shipper:$("#shipper").val(),
 					shipperPhone:$("#shipperPhone").val(),
 					quantity:$("#quantity").val(),
+					unit:$("#unit").val(),
 					money:$("#money").val(),
 					freight:$("#freight").val(),
 					total:$("#total").val(),

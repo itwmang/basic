@@ -13,7 +13,8 @@
 		<result column="receiver_phone" property="receiverPhone" />		<!-- 收货人电话 -->
 		<result column="shipper" property="shipper" />		<!-- 发货人 -->
 		<result column="shipper_phone" property="shipperPhone" />		<!-- 发货人电话 -->
-		<result column="quantity" property="quantity" />		<!-- 数量单位 -->
+		<result column="quantity" property="quantity" />		<!-- 数量 -->
+		<result column="unit" property="unit" />		<!-- 单位 -->
 		<result column="money" property="money" />		<!-- 货款 -->
 		<result column="freight" property="freight" />		<!-- 运费 -->
 		<result column="total" property="total" />		<!-- 合计 -->
@@ -45,7 +46,7 @@
 
 	<sql id="baseColumnList">
 		row_id,org_code,bill_no,bill_date,receiver,
-		receiver_phone,shipper,shipper_phone,quantity,money,
+		receiver_phone,shipper,shipper_phone,quantity,unit,money,
 		freight,total,freight_type,driver,remarks,
 		bill_state,receivables_state,receivables_type,receivables_date,payment_state,
 		payment_type,payment_date,price_spare_1,price_spare_2,price_spare_3,
@@ -73,7 +74,7 @@
 		)
 		values
 		(	#{rowId},#{orgCode},#{billNo},#{billDate},#{receiver},
-			#{receiverPhone},#{shipper},#{shipperPhone},#{quantity},#{money},
+			#{receiverPhone},#{shipper},#{shipperPhone},#{quantity},#{unit},#{money},
 			#{freight},#{total},#{freightType},#{driver},#{remarks},
 			#{billState},#{receivablesState},#{receivablesType},#{receivablesDate},#{paymentState},
 			#{paymentType},#{paymentDate},#{priceSpare1},#{priceSpare2},#{priceSpare3},
@@ -111,6 +112,9 @@
 					</when>
 					<when test="column=='quantity' || column=='quantity'">
 						quantity=#{record.quantity}
+					</when>
+					<when test="column=='unit' || column=='unit'">
+						unit=#{record.unit}
 					</when>
 					<when test="column=='money' || column=='money'">
 						money=#{record.money}
@@ -202,7 +206,7 @@
 	<update id="update" parameterType="com.wmang.logis.mode.entity.user.ShippingDocuments">
 		update shipping_documents
 		set row_id=#{rowId},org_code=#{orgCode},bill_no=#{billNo},bill_date=#{billDate},receiver=#{receiver},
-			receiver_phone=#{receiverPhone},shipper=#{shipper},shipper_phone=#{shipperPhone},quantity=#{quantity},money=#{money},
+			receiver_phone=#{receiverPhone},shipper=#{shipper},shipper_phone=#{shipperPhone},quantity=#{quantity},unit=#{unit},money=#{money},
 			freight=#{freight},total=#{total},freight_type=#{freightType},driver=#{driver},remarks=#{remarks},
 			bill_state=#{billState},receivables_state=#{receivablesState},receivables_type=#{receivablesType},receivables_date=#{receivablesDate},payment_state=#{paymentState},
 			payment_type=#{paymentType},payment_date=#{paymentDate},price_spare_1=#{priceSpare1},price_spare_2=#{priceSpare2},price_spare_3=#{priceSpare3},

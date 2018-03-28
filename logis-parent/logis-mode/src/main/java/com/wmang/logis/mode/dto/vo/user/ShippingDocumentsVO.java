@@ -39,8 +39,10 @@ public class ShippingDocumentsVO implements Serializable {
 	private String shipper;
 	/** 发货人电话 **/
 	private String shipperPhone;
-	/** 数量单位 **/
+	/** 数量 **/
 	private String quantity;
+	/** 单位 */
+	private String unit;
 	/** 货款 **/
 	private BigDecimal money;
 	/** 运费 **/
@@ -537,4 +539,11 @@ public class ShippingDocumentsVO implements Serializable {
 	public void setPubModiDateEndStr(String pubModiDateEndStr) {
 		this.pubModiDateEndStr=pubModiDateEndStr;
 	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	
 }

@@ -4,6 +4,16 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 	var moduleVersion = "1.0.0";
 	var tableObj = null;
 
+	function isNumber(value) {         //验证是否为数字
+	    var patrn = /^(-)?\d+(\.\d+)?$/;
+	    if (patrn.exec(value) == null || value == "") {
+	        return false
+	    } else {
+	        return true
+	    }
+	}
+	
+	
 	/** 添加用户页面初始化 */
 	var fillBillNo = function() {
 		// 初始化单据号
@@ -30,7 +40,17 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 				value : $("#billDate").val() ? $("#billDate").val() : new Date
 			});
 
+//			初始化自定义校验
+			form.verify({  
+		        onlynum: function(value){  
+		            if(!!value&&!isNumber(value)){  
+		              return '只能输入数字';  
+		            }  
+		          }
+			});
 			form.render();
+			
+			$("#unit").parent().find(".layui-form-select").css("width","60px").css("float","left");
 		});
 
 		$("#receiver").focus();
@@ -75,21 +95,23 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 					$("#shipper").val(json.shipper);
 					$("#shipperPhone").val(json.shipperPhone);
 					$("#quantity").val(json.quantity);
-					var a = json.money;
-					if (a) {
-						$("#money").val();
+					$("#unit").val(json.unit);
+					debugger;
+					var money = json.money;
+					if (money) {
+						$("#money").val(money);
 					} else {
 						$("#money").val(0)
 					}
-					var b = json.freight;
-					if (b) {
-						$("#freight").val();
+					var freight = json.freight;
+					if (freight) {
+						$("#freight").val(freight);
 					} else {
 						$("#freight").val(0)
 					}
-					var c = json.total;
-					if (c) {
-						$("#total").val();
+					var total = json.total;
+					if (total) {
+						$("#total").val(total);
 					} else {
 						$("#total").val(0)
 					}
@@ -210,6 +232,11 @@ define([ 'layuijs', 'common','ajax_lib'], function(layuijs, common,ajax_lib) {
 							field : 'quantity',
 							title : '数量',
 							minwidth : 120
+						},
+						{
+							field : 'unit',
+							title : '单位',
+							minwidth : 80
 						},
 						{
 							field : 'money',

@@ -30,6 +30,7 @@ public class ShippingDocumentsExchanger extends AbstractExchanger<ShippingDocume
 		vo.setShipper(db.getShipper());
 		vo.setShipperPhone(db.getShipperPhone());
 		vo.setQuantity(db.getQuantity());
+		vo.setUnit(db.getUnit());
 		vo.setMoney(db.getMoney());
 		vo.setFreight(db.getFreight());
 		vo.setTotal(db.getTotal());
@@ -78,6 +79,7 @@ public class ShippingDocumentsExchanger extends AbstractExchanger<ShippingDocume
 		db.setShipper(vo.getShipper());
 		db.setShipperPhone(vo.getShipperPhone());
 		db.setQuantity(vo.getQuantity());
+		db.setUnit(vo.getUnit());
 		db.setMoney(vo.getMoney());
 		db.setFreight(vo.getFreight());
 		db.setTotal(vo.getTotal());
@@ -135,6 +137,7 @@ public class ShippingDocumentsExchanger extends AbstractExchanger<ShippingDocume
 		vo.setShipper(ValueUtil.toStr(map.get("shipper")));
 		vo.setShipperPhone(ValueUtil.toStr(map.get("shipperPhone")));
 		vo.setQuantity(ValueUtil.toStr(map.get("quantity")));
+		vo.setUnit(ValueUtil.toStr(map.get("unit")));
 		vo.setMoney(ValueUtil.toBigDecimalNull(map.get("money")));
 		vo.setFreight(ValueUtil.toBigDecimalNull(map.get("freight")));
 		vo.setTotal(ValueUtil.toBigDecimalNull(map.get("total")));

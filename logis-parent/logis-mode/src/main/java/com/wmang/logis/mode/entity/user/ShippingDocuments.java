@@ -33,8 +33,10 @@ public class ShippingDocuments implements Serializable {
 	public final static String shipper_="shipper";
 	/** 发货人电话 */
 	public final static String shipperPhone_="shipper_phone";
-	/** 数量单位 */
+	/** 数量 */
 	public final static String quantity_="quantity";
+	/** 单位 */
+	public final static String unit_="unit";
 	/** 货款 */
 	public final static String money_="money";
 	/** 运费 */
@@ -106,8 +108,10 @@ public class ShippingDocuments implements Serializable {
 	private String shipper;
 	/** 发货人电话 */
 	private String shipperPhone;
-	/** 数量单位 */
+	/** 数量 */
 	private String quantity;
+	/** 单位 */
+	private String unit;
 	/** 货款 */
 	private BigDecimal money;
 	/** 运费 */
@@ -451,4 +455,11 @@ public class ShippingDocuments implements Serializable {
 	public void setPubModiDate(Date pubModiDate) {
 		this.pubModiDate=pubModiDate;
 	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	
 }

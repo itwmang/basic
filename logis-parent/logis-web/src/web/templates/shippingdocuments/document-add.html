@@ -71,7 +71,7 @@
 			<div class="layui-inline oneline-form">
 				<label class="layui-form-label">收货人：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="receiver" lay-verify="required" autocomplete="off" class="layui-input" tabindex="3">
+					<input type="text" id="receiver" autocomplete="off" class="layui-input" tabindex="3">
 				</div>
 			</div>
 		</div>
@@ -80,19 +80,19 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">收货人电话：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="receiverPhone" lay-verify="number" autocomplete="off" class="layui-input" tabindex="4">
+					<input type="text" id="receiverPhone" lay-verify="onlynum"  autocomplete="off" class="layui-input" tabindex="4">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">发货人：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="shipper"  lay-verify="required" autocomplete="off" class="layui-input" tabindex="5">
+					<input type="text" id="shipper" autocomplete="off" class="layui-input" tabindex="5">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">发货人电话：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="shipperPhone"  lay-verify="number"  autocomplete="off" class="layui-input" tabindex="6">
+					<input type="text" id="shipperPhone" lay-verify="onlynum"  autocomplete="off" class="layui-input" tabindex="6">
 				</div>
 			</div>
 		</div>
@@ -101,19 +101,24 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">数量：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="quantity"  lay-verify="number" autocomplete="off" class="layui-input" tabindex="7">
+					<input type="text" id="quantity" lay-verify="onlynum" autocomplete="off" class="layui-input" tabindex="7" style="width:68%;float:left" />
+					<select id="unit" >
+						<option value="包">包</option>
+						<option value="袋">袋</option>
+						<option value="车">车</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">贷款：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="money" lay-verify="number"  autocomplete="off" class="layui-input" tabindex="8">
+					<input type="text" id="money" lay-verify="onlynum"  autocomplete="off" class="layui-input" tabindex="8">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">运费：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="freight" lay-verify="number" autocomplete="off" class="layui-input" tabindex="9">
+					<input type="text" id="freight" lay-verify="onlynum" autocomplete="off" class="layui-input" tabindex="9">
 				</div>
 			</div>
 		</div>
@@ -122,7 +127,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">合计：</label>
 				<div class="layui-input-inline">
-					<input type="text" id="total" lay-verify="number" autocomplete="off" class="layui-input" tabindex="10">
+					<input type="text" id="total" lay-verify="onlynum" autocomplete="off" class="layui-input" tabindex="10">
 				</div>
 			</div>
 			<div class="layui-inline">

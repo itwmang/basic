@@ -47,7 +47,7 @@ public class ShippingDocumentsBizImpl extends AbstractBaseMgrBiz<ShippingDocumen
 
 	protected static List<String> updateColumns = Arrays.asList(ShippingDocuments.orgCode_, ShippingDocuments.billNo_,
 			ShippingDocuments.billDate_, ShippingDocuments.receiver_, ShippingDocuments.receiverPhone_,
-			ShippingDocuments.shipper_, ShippingDocuments.shipperPhone_, ShippingDocuments.quantity_,
+			ShippingDocuments.shipper_, ShippingDocuments.shipperPhone_, ShippingDocuments.quantity_,ShippingDocuments.unit_,
 			ShippingDocuments.money_, ShippingDocuments.freight_, ShippingDocuments.total_,
 			ShippingDocuments.freightType_, ShippingDocuments.driver_, ShippingDocuments.remarks_,
 			ShippingDocuments.billState_, ShippingDocuments.receivablesState_, ShippingDocuments.receivablesType_,
